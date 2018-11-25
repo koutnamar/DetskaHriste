@@ -58,8 +58,7 @@
 			<th>Dopravní dostupnost</th>
 			<th>Otevírací doba</th>
 			<th>Průměrná známka</th>
-		</tr>
-		
+		</tr>		
 			<%
 				ArrayList<Playground> list = playgroundDao.loadAll();
 				for (Playground playground : list) {
@@ -75,8 +74,6 @@
 			<%
 				}
 			%>
-
-		
 		
 	</table>
 	<a href="newZone.jsp" class="doprava">Přidat nové hřiště</a>
