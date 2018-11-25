@@ -58,7 +58,7 @@ public class LocationDao extends JdbcDao {
 		try (Connection con = ds.getConnection(); PreparedStatement stmt = con.prepareStatement(LOAD_CITY)) {
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
-				String newCity = rs.getString("city");
+				String newCity = rs.getString("uniqueCity");
 				listCity.add(newCity);
 			}
 		} catch (SQLException e) {

@@ -35,7 +35,7 @@
 				ArrayList<String> cityList = locationDao.loadCity();
 				for (String city : cityList) {
 			%>
-				<option>city</option>
+				<option><%=city%></option>
 			<%
 				}
 			%>

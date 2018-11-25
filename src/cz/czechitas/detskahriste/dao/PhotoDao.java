@@ -19,9 +19,9 @@ import cz.czechitas.detskahriste.bean.Photo;
 
 public class PhotoDao extends JdbcDao {
 
-	private static final String LOAD_CONTENT = "select CONTENT from PHOTO where idPhoto=?";
-	private static final String LOAD = "select idPhoto, namePhoto from PHOTO WHERE idFkPlayPhoto = ?";
-	private static final String INSERT = "insert into PHOTO(namePhoto,idFkPlayPhoto, CONTENT) values ( ?, ?,?)";
+	private static final String LOAD_CONTENT = "select CONTENT from photo where idPhoto=?";
+	private static final String LOAD = "select idPhoto, namePhoto from photo WHERE idFkPlayPhoto = ?";
+	private static final String INSERT = "insert into photo(namePhoto,idFkPlayPhoto, CONTENT) values ( ?, ?,?)";
 
 	public void save(Photo photo, Long idPlayground, InputStream is) {
 		DataSource ds = getDataSource();
