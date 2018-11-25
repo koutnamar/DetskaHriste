@@ -38,15 +38,9 @@ public class CommentServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		String action = request.getParameter("action");
-		Long idPlayground = Long.parseLong(request.getParameter("idPlayground"));
-		System.out.println("action="+action);
-		System.out.println("idPlayground="+idPlayground);
-		String UserField userField = new UserField();
-		String CommentField commentField = new CommentField();
-		
-		
-		
-		
+		if("createComment".equals(action)) {
+			createComment(request);
+		}
 		getServletContext().getRequestDispatcher("/comment.jsp").forward(request, response);
 	}
 
