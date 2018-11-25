@@ -1,12 +1,12 @@
 package cz.czechitas.detskahriste.bean;
 
 public class Rating {
-	public Long idRating;
-	public Double equipment;
-	public Double tidiness;
-	public Double safety;
-	public Double environment;
-	public Double restZone;
+	private Long idRating;
+	private Double equipment;
+	private Double tidiness;
+	private Double safety;
+	private Double environment;
+	private Double restZone;
 
 	public Long getIdRating() {
 		return idRating;
