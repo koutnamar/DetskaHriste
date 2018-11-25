@@ -12,8 +12,7 @@ import cz.czechitas.detskahriste.bean.Location;
 
 public class LocationDao extends JdbcDao {
 
-	private static final String LOAD = "SELECT * FROM LOCATION WHERE idFkPlayLoc = ?"; // naète všechny záznamy z
-																						// location user - pøíkaz SQL
+	private static final String LOAD = "SELECT * FROM LOCATION WHERE idFkPlayLoc = ?";
 	private static final String INSERT = "INSERT INTO LOCATION(street,city,latitude,longtitude,idFkPlayLoc) VALUES (?, ?,?,?,?)";
 
 	public void save(Location location, Long idPlayground) {
@@ -37,8 +36,8 @@ public class LocationDao extends JdbcDao {
 		DataSource ds = getDataSource();
 		try (Connection con = ds.getConnection(); PreparedStatement stmt = con.prepareStatement(LOAD)) {
 			stmt.setLong(1, idPlayground);
-			ResultSet rs = stmt.executeQuery(); // naèetla jsem celou tabulku - viz LOAD
-			if (rs.next()) { // dokud je další øádek v tabulce, naète údaje
+			ResultSet rs = stmt.executeQuery();
+			if (rs.next()) {
 				loc.setStreet(rs.getString("street"));
 				loc.setCity(rs.getString("city"));
 				loc.setLatitude(rs.getString("latitude"));
@@ -48,7 +47,7 @@ public class LocationDao extends JdbcDao {
 			e.printStackTrace();
 		}
 
-		return loc; // pøedá ven lokaci
+		return loc; 
 	}
 
 }
