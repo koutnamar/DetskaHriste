@@ -4,22 +4,19 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import javax.sql.DataSource;
 
 import cz.czechitas.detskahriste.bean.Rating;
 
 public class RatingDao extends JdbcDao {
-	
-	private static final String LOAD ="SELECT * FROM RATING WHERE idFkPlayRating=?"; 
-	private static  final String INSERT = "INSERT INTO RATING(equipment, tidiness, safety, environment, restZone, idFkPlayRating) VALUES(?,?,?,?,?,?)";
-	
+
+	private static final String LOAD = "SELECT AVG(equipment) as avgEquipment, AVG(tidiness) as avgTidiness, AVG(safety) as avgSafety, AVG(environment) as avgEnvironment, AVG(restZone) as avgRestZone FROM RATING WHERE idFkPlayRating=?";
+	private static final String INSERT = "INSERT INTO RATING(equipment, tidiness, safety, environment, restZone, idFkPlayRating) VALUES(?,?,?,?,?,?)";
+
 	public void save(Rating rating, Long idPlayground) {
 		DataSource ds = getDataSource();
-		try (Connection con = ds.getConnection();
-				PreparedStatement stmt = con.prepareStatement(INSERT))
-		{
+		try (Connection con = ds.getConnection(); PreparedStatement stmt = con.prepareStatement(INSERT)) {
 			stmt.setDouble(1, rating.getEquipment());
 			stmt.setDouble(2, rating.getTidiness());
 			stmt.setDouble(3, rating.getSafety());
@@ -30,29 +27,27 @@ public class RatingDao extends JdbcDao {
 			con.commit();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();}
+			e.printStackTrace();
 		}
+	}
 
-	public ArrayList<Rating> load(Long idPlayground) {
-		ArrayList<Rating> ratList = new ArrayList<>();
+	public Rating load(Long idPlayground) {
+		Rating rat = new Rating();
 		DataSource ds = getDataSource();
 		try (Connection con = ds.getConnection(); PreparedStatement stmt = con.prepareStatement(LOAD)) {
 			stmt.setLong(1, idPlayground);
 			ResultSet rs = stmt.executeQuery();
-			while (rs.next()) {
-				Rating rat = new Rating();
-				rat.setIdRating(rs.getLong("idRating"));
-				rat.setEquipment(rs.getDouble("equipment"));
-				rat.setTidiness(rs.getDouble("tidiness"));
-				rat.setSafety(rs.getDouble("safety"));
-				rat.setEnvironment(rs.getDouble("environment"));
-				rat.setRestZone(rs.getDouble("restZone"));
-				ratList.add(rat);
+			if (rs.next()) {
+				rat.setEquipment(rs.getDouble("avgEquipment"));
+				rat.setTidiness(rs.getDouble("avgTidiness"));
+				rat.setSafety(rs.getDouble("avgSafety"));
+				rat.setEnvironment(rs.getDouble("avgEnvironment"));
+				rat.setRestZone(rs.getDouble("avgRestZone"));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return ratList;
+		return rat;
 	}
 }

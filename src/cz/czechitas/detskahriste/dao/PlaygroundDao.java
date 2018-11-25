@@ -10,7 +10,7 @@ import javax.sql.DataSource;
 
 import cz.czechitas.detskahriste.bean.Comment;
 import cz.czechitas.detskahriste.bean.Playground;
-
+	
 public class PlaygroundDao extends JdbcDao {
 	private static final String LOAD = "SELECT * FROM PLAYGROUND WHERE idPlayground = ?"; // naèíst všechny záznamy z
 																							// tabulky playground
