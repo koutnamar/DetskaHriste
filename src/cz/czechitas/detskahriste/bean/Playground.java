@@ -11,6 +11,7 @@ public class Playground {
 	private List<Photo> photoList;
 	private List<Comment> commentList;
 	private Double averageRating;
+	private Rating rating;
 
 	public Long getIdPlayground() {
 		return idPlayground;
@@ -68,4 +69,13 @@ public class Playground {
 		this.averageRating = averageRating;
 	}
 
+	public Rating getRating() {
+		return rating;
+	}
+
+	public void setRating(Rating rating) {
+		this.rating = rating;
+	}
+
+	
 }
