@@ -89,9 +89,26 @@ public class PlaygroundDao extends JdbcDao {
 	}
 
 	private Double calculateAverage(Rating rating) {
-		Double average;
-		average = rating.getEnvironment() + rating.getEquipment() + rating.getRestZone() + rating.getSafety()
-				+ rating.getTidiness() / 5;
+		if (rating == null) {
+			return 0d;
+		}
+		Double average = 0d;
+		if (rating.getEnvironment() != null) {
+			average += rating.getEnvironment();
+		}
+		if (rating.getEquipment() != null) {
+			average += rating.getEquipment();
+		}
+		if (rating.getRestZone() != null) {
+			average += rating.getRestZone();
+		}
+		if (rating.getSafety() != null) {
+			average += rating.getSafety();
+		}
+		if (rating.getTidiness() != null) {
+			average += rating.getTidiness();
+		}
+		average = average / 5;
 		return average;
 	}
 
