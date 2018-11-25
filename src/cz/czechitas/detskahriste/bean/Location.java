@@ -5,7 +5,7 @@ public class Location {
 	private String city;
 	private String latitude;
 	private String longtitude;
-	private Long idFkPlayLoc;
+
 
 	public String getStreet() {
 		return street;
@@ -39,12 +39,6 @@ public class Location {
 		this.longtitude = longtitude;
 	}
 
-	public Long getIdFkPlayLoc() {
-		return idFkPlayLoc;
-	}
-
-	public void setIdFkPlayLoc(Long idFkPlayLoc) {
-		this.idFkPlayLoc = idFkPlayLoc;
-	}
+	
 
 }
