@@ -8,9 +8,9 @@ import java.util.ArrayList;
 
 import javax.sql.DataSource;
 
-import cz.czechitas.detskahriste.bean.Comment;
 import cz.czechitas.detskahriste.bean.Playground;
-	
+import cz.czechitas.detskahriste.bean.Rating;
+
 public class PlaygroundDao extends JdbcDao {
 	private static final String LOAD = "SELECT * FROM PLAYGROUND WHERE idPlayground = ?"; // naèíst všechny záznamy z
 																							// tabulky playground
@@ -52,7 +52,8 @@ public class PlaygroundDao extends JdbcDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		// playground.setAverageRating(ratingDao.load(playground.getIdPlayground()));
+		playground.setRating(ratingDao.load(playground.getIdPlayground()));
+		playground.setAverageRating(calculateAverage(playground.getRating()));
 		playground.setCommentList(commentDao.load(playground.getIdPlayground()));
 		playground.setLocation(locationDao.load(playground.getIdPlayground()));
 		playground.setPhotoList(photoDao.load(playground.getIdPlayground()));
@@ -78,11 +79,20 @@ public class PlaygroundDao extends JdbcDao {
 			e.printStackTrace();
 		}
 		for (Playground playground : list) {
-			// playground.setAverageRating(ratingDao.load(playground.getIdPlayground()));
+			playground.setRating(ratingDao.load(playground.getIdPlayground()));
+			playground.setAverageRating(calculateAverage(playground.getRating()));
 			playground.setCommentList(commentDao.load(playground.getIdPlayground()));
 			playground.setLocation(locationDao.load(playground.getIdPlayground()));
 			playground.setPhotoList(photoDao.load(playground.getIdPlayground()));
 		}
 		return list;
 	}
+
+	private Double calculateAverage(Rating rating) {
+		Double average;
+		average = rating.getEnvironment() + rating.getEquipment() + rating.getRestZone() + rating.getSafety()
+				+ rating.getTidiness() / 5;
+		return average;
+	}
+
 }
