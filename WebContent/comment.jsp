@@ -1,3 +1,4 @@
+<%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="cz.czechitas.detskahriste.bean.Comment"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="cz.czechitas.detskahriste.dao.CommentDao"%>
@@ -25,96 +26,30 @@
 	<h1 align="center">
 		<strong>KOMENTÁŘE K HŘIŠTI Zednická, Ostrava</strong>
 	</h1>
-	<form action="createComment" method="post">
+<%-- 	<form action="comment.jsp?idPlayground=<%=request.getParameter("idPlayground")%>" method="post" > --%>
+		<form action="CommentServlet" method="post" >
 		Jméno uživatele:<br> <input type="text" value="Jméno/nick"
 			class="seda" name="userField"><br> Komentář:<br> <input
-			type="text" value="Přidejte text komentáře" id="koment" class="seda"
+			type="text" value="Přidejte text komentáře" id="koment"
 			name="commentField"><br>
-		<button type="submit">Odeslat komentář</button>
+		<button type="submit" name="action" value="createComment">Odeslat komentář</button>
 	</form>
 	<jsp:useBean id="dao" class="cz.czechitas.detskahriste.dao.CommentDao"></jsp:useBean>
-	<%
+	
+
+	<div>
+		<h2>Komentáře</h2>
+		<%
 		ArrayList<Comment> listCom = dao.load(Long.valueOf(request.getParameter("idPlayground")));
 		for (Comment s : listCom) {
 	%>
 	<p>
-		<strong class="fialova"></strong>
-		<%
-			s.getUser();
-		%><br>
-
-		<%
-			s.getText();
-		%><br>
-		<%
-			s.getDate();
-		%><br>
+		<strong class="fialova">
+		<%=s.getUser()%> - <%=s.getDate().format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm"))%></strong><br>
+		<i><%=s.getText()%></i><br>
+		<br>
 	</p>
-
-	<%
-		}
-	%>
-
-	<div>
-		<h2>Komentáře</h2>
-		<p>
-			<strong class="fialova">PetrP - 12.03.2018 14:13</strong><br> <i>Oblečený
-				k tkání. Pásu od vystoupám věc fotogalerii názoru, tím o lyžování
-				hřebeni ukáže jejího ne tj. oslovil víkend. Stáda voda z klonovacího
-				nezávislé kréta spoustu o federální Atlantik v řeč, zabíjí ať
-				dokonce lyžařské, nazvaný oceánu přetrvávaj</i>
-		</p>
-		<p>
-			<strong class="fialova">xxxxxxxy - 15.02.2018 11:12</strong><br>
-			<i>Lodi 1 jasnější mlze skutečnost putuje zamrzlé textu, dobrá že
-				lyžařské vy domech lidí. Ptáků magma jedete větru ji označených,
-				kariéru dva říkat 360° lidstvo a směna, jen vousům a přeléval 1
-				vědci</i>
-		</p>
-		<p>
-			<strong class="fialova">ZdenkaZs - 14.02.2018 09:13</strong><br>
-			<i>Bílou mozkové přísun obyvatelé změn geometrické dlouho, noc
-				žije zapomenu rok dlouhokrkých nákaza.</i>
-		</p>
-		<p>
-			<strong class="fialova">LenkaMalá - 11.01.2018 09:13</strong><br>
-			<i>Silou a zemí i pohybovaly severoamerická z zemědělské
-				dodržování zapamatovat softwarový s největšího sezonní, i objevili
-				aktivitu s jihoafrické souvislosti za sem prozkoumány potravou o
-				svědomí, polárního půjčovna řečení ho primitivních. </i>
-		<p>
-			<strong class="fialova">IvaVelká - 10.01.2018 09:10</strong><br>
-			<i>Dočkala vrcholky opadavých hmyz pět dá rozmnožováním splňoval,
-				začal to a počasí písně techniku u panenská malém dvě rozeznatelné
-				či ruce. Před té aktivitu u aktivitách ta vložit poškození budova,
-				zajímavou, může ať popis ruin kurzů dá popis natočen </i>
-		</p>
-		<p>
-			<strong class="fialova">BáraProstřední - 08.01.2018 08:18</strong><br>
-			<i>Oblíbený u napíná položeným ságy testů úctyhodných požírají
-				araby nahý velryb, až odstřihne mé. Moravy jihoafrické k ke ta držet
-				andského s sotva dosahu dvěma popisuje, zmrzlé tradičních, tanec ho
-				přetlakovaný snažil zaměstnanci dimenzí a vážil houževnatost víno
-				přibyly přírodu v opomíjena. Úbytek nejprestižnějšího slepé počasí
-				dostupné, tři vysokých annan. </i>
-		</p>
-		<p>
-			<strong class="fialova">HedvikaP - 01.01.2018 22:16</strong><br>
-			<i>Nic čestná před tak i funkci takhle čtyř-dimenzionální
-				klientela pohybuje u multi-dimenzionálním systematicky. V strany
-				jemu nejste shluky, využitelný, vznikl houby i populace, však že
-				správě vzácné inspektory kilometrového.</i>
-		</p>
-		<p>
-			<strong class="fialova">HonzaS - 01.01.2018 22:15</strong><br> <i>Jeví
-				dělí divný izolaci populací rozdíly celého rozběhnutý antónio znovu
-				půlkilometrová velký indičtí svém následkem, štítů EU komunikují
-				jednou zemskou činila. Odlišnosti lanovek vlastnictví víře pracuje
-				bránil čaj. Specialistkou neopakovatelnou tj. běžná motýly začnou
-				prozkoumány, žlutě vyšší byste jezuita.</i>
-		</p>
-
-
+	<%}%>
 	</div>
 </body>
 </html>

@@ -35,8 +35,9 @@ public class CommentDao extends JdbcDao {
 		ArrayList<Comment> list = new ArrayList<>(); //do toho seznamu uložím, co najdu
 		DataSource ds = getDataSource(); //získám pøipojení k DB
 		try (Connection con = ds.getConnection(); //pøipojení k DB
-			PreparedStatement stmt = con.prepareStatement(LOAD)) //javovská konstrukce, jak se provolává SELECT do DB 
+			PreparedStatement stmt = con.prepareStatement(LOAD))//javovská konstrukce, jak se provolává SELECT do DB
 		{
+			stmt.setLong(1, idPlayground);
 			ResultSet rs = stmt.executeQuery();	//vytáhnou se komentáøe patøící høišti
 			while (rs.next()) { //v rs jsou data, která potøebuju nasetovat do svých objektù
 				Comment com = new Comment();

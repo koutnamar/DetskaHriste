@@ -17,7 +17,7 @@ import cz.czechitas.detskahriste.dao.CommentDao;
 /**
  * Servlet implementation class CommentServlet
  */
-@WebServlet("/comment")
+@WebServlet(urlPatterns= {"/CommentServlet"})
 public class CommentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -36,7 +36,10 @@ public class CommentServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		String action = request.getParameter("action");
+		System.out.println(action);
+		getServletContext().getRequestDispatcher("/comment.jsp").forward(request, response);
 	}
 
 	/**
