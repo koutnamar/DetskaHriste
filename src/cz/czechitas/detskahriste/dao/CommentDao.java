@@ -11,8 +11,8 @@ import javax.sql.DataSource;
 import cz.czechitas.detskahriste.bean.Comment;
 
 public class CommentDao extends JdbcDao {
-	private static final String LOAD = "SELECT * FROM COMMENT WHERE idFkPlayCom = ?"; //naèíst všechny záznamy z tabulky comment
-	private static final String INSERT = "INSERT INTO COMMENT(user,text,date,idFkPlayCom) VALUES (?,?,?,?)";
+	private static final String LOAD = "SELECT * FROM comment WHERE idFkPlayCom = ?"; //naèíst všechny záznamy z tabulky comment
+	private static final String INSERT = "INSERT INTO comment(user,text,date,idFkPlayCom) VALUES (?,?,?,?)";
 
 	public void save(Comment comment, Long idPlayground) {
 		DataSource ds = getDataSource();

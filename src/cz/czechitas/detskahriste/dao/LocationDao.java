@@ -13,9 +13,9 @@ import cz.czechitas.detskahriste.bean.Location;
 
 public class LocationDao extends JdbcDao {
 
-	private static final String LOAD = "SELECT * FROM LOCATION WHERE idFkPlayLoc = ?";
-	private static final String LOAD_CITY = "SELECT DISTINCT city AS uniqueCity FROM LOCATION";
-	private static final String INSERT = "INSERT INTO LOCATION(street,city,latitude,longtitude,idFkPlayLoc) VALUES (?, ?,?,?,?)";
+	private static final String LOAD = "SELECT * FROM location WHERE idFkPlayLoc = ?";
+	private static final String LOAD_CITY = "SELECT DISTINCT city AS uniqueCity FROM location";
+	private static final String INSERT = "INSERT INTO location(street,city,latitude,longtitude,idFkPlayLoc) VALUES (?, ?,?,?,?)";
 
 	public void save(Location location, Long idPlayground) {
 
@@ -51,15 +51,14 @@ public class LocationDao extends JdbcDao {
 		return loc;
 	}
 
-	public ArrayList<String> loadCity(Long idPlayground) {
+	public ArrayList<String> loadCity() {
 		ArrayList<String> listCity = new ArrayList<>();
 
 		DataSource ds = getDataSource();
 		try (Connection con = ds.getConnection(); PreparedStatement stmt = con.prepareStatement(LOAD_CITY)) {
-			stmt.setLong(1, idPlayground);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
-				String newCity = rs.getString("uniqueCity");
+				String newCity = rs.getString("city");
 				listCity.add(newCity);
 			}
 		} catch (SQLException e) {
