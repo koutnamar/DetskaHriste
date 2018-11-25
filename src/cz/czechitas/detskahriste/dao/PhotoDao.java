@@ -41,7 +41,8 @@ public class PhotoDao extends JdbcDao {
 		List<Photo> photos = new ArrayList<Photo>();
 
 		DataSource ds = getDataSource();
-		try (Connection con = ds.getConnection(); PreparedStatement stmt = con.prepareStatement("LOAD")) {
+		try (Connection con = ds.getConnection(); PreparedStatement stmt = con.prepareStatement(LOAD)) {
+			stmt.setLong(1, idPlayground);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				Photo photo = new Photo();
