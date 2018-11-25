@@ -4,6 +4,11 @@
 #create user 'detskahriste'@'%' identified by 'dvnojer89734';
 #grant all on detskahriste.* to 'detskahriste'@'%';
 
+DROP TABLE `detskahriste`.`rating`;
+DROP TABLE `detskahriste`.`comment`;
+DROP TABLE `detskahriste`.`photo`;
+DROP TABLE `detskahriste`.`location`;
+DROP TABLE `detskahriste`.`playground`;
 
 CREATE TABLE `detskahriste`.`playground` (
   `idPlayground` INT NOT NULL AUTO_INCREMENT,

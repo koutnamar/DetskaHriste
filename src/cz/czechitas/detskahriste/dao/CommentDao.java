@@ -24,7 +24,6 @@ public class CommentDao extends JdbcDao {
 			stmt.setTimestamp(3, java.sql.Timestamp.valueOf(comment.getDate()));
 			stmt.setLong(4, idPlayground);
 			stmt.executeUpdate();
-			con.commit();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}	
