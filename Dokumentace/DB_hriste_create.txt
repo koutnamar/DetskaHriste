@@ -1,0 +1,78 @@
+﻿CREATE SCHEMA `detskahriste` ;
+
+CREATE TABLE `detskahriste`.`playground` (
+  `idPlayground` INT NOT NULL AUTO_INCREMENT,
+  `open` VARCHAR(100) NOT NULL,
+  `traffic` VARCHAR(100) NOT NULL,
+  PRIMARY KEY (`idPlayground`));
+CREATE TABLE `detskahriste`.`location` (
+  `street` VARCHAR(45) NOT NULL,
+  `city` VARCHAR(45) NOT NULL,
+  `latitude` VARCHAR(45) NOT NULL,
+  `longtitude` VARCHAR(45) NOT NULL,
+  `idFkPlayLoc` INT NOT NULL);
+CREATE TABLE `detskahriste`.`photo` (
+  `idPhoto` INT NOT NULL AUTO_INCREMENT,
+  `namePhoto` VARCHAR(45) NOT NULL,
+  `path` VARCHAR(255) NOT NULL,
+  `idFkPlayPhoto` INT NOT NULL,
+  PRIMARY KEY (`idPhoto`));
+CREATE TABLE `detskahriste`.`comment` (
+  `idComment` INT NOT NULL AUTO_INCREMENT,
+  `user` VARCHAR(45) NOT NULL,
+  `text` VARCHAR(255) NOT NULL,
+  `date` DATE NOT NULL,
+  `idFkPlayCom` INT NOT NULL,
+  PRIMARY KEY (`idComment`));
+CREATE TABLE `detskahriste`.`rating` (
+  `idRating` INT NOT NULL AUTO_INCREMENT,
+  `equipment` INT NOT NULL,
+  `tidiness` INT NOT NULL,
+  `safety` INT NOT NULL,
+  `environment` INT NOT NULL,
+  `restZone` INT NOT NULL,
+  `idFkPlayRating` INT NOT NULL,
+  PRIMARY KEY (`idRating`));
+
+
+ALTER TABLE `detskahriste`.`location` 
+ADD CONSTRAINT `idFkPlayLoc`
+  FOREIGN KEY (`idFkPlayLoc`)
+  REFERENCES `detskahriste`.`playground` (`idPlayground`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+ALTER TABLE `detskahriste`.`photo` 
+ADD CONSTRAINT `idFkPlayPhoto`
+    FOREIGN KEY (`idFkPlayPhoto`)
+    REFERENCES `detskahriste`.`playground` (`idPlayground`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION;
+ALTER TABLE `detskahriste`.`comment` 
+ADD CONSTRAINT `idFkPlayCom`
+    FOREIGN KEY (`idFkPlayCom`)
+    REFERENCES `detskahriste`.`playground` (`idPlayground`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION;
+
+ALTER TABLE `detskahriste`.`rating` 
+ADD CONSTRAINT `idFkPlayRating`
+    FOREIGN KEY (`idFkPlayRating`)
+    REFERENCES `detskahriste`.`playground` (`idPlayground`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION;
+
+
+
+
+INSERT INTO `detskahriste`.`playground` (`open`, `traffic`) VALUES ('non-stop', 'tram');
+
+INSERT INTO `detskahriste`.`comment` (`user`, `text`, `date`, `idFkPlayCom`) VALUES ('Pepa', 'Super místo pro malé i věší děti', '2018-11-17', '1');
+
+INSERT INTO `detskahriste`.`location` (`street`, `city`, `latitude`, `longtitude`,`idFkPlayLoc`) VALUES ('Panelová', 'Ostrava', '49°49:48.2N', '18°10:58.5E','1');
+
+INSERT INTO `detskahriste`.`rating` (`equipment`, `tidiness`, `safety`, `environment`, `restZone`, `idFkPlayRating`) VALUES ('3', '4', '5', '3', '3', '1');
+
+INSERT INTO `detskahriste`.`photo` (`namePhoto`, `path`, `idFkPlayPhoto`) VALUES ('Panelová1', 'detskahriste/photos/panelova1.jpg', '1');
+
+
+SELECT * FROM playground,location WHERE playground.idPlayground=location.idFkPlayLoc;
