@@ -8,7 +8,7 @@ public class Location {
 	private Long idFkPlayLoc;
 
 	public String getStreet() {
-		return street;
+		return street ;
 	}
 
 	public void setStreet(String street) {
