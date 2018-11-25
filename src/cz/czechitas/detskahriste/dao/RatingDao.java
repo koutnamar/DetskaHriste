@@ -27,7 +27,6 @@ public class RatingDao extends JdbcDao {
 			stmt.setDouble(5, rating.getRestZone());
 			stmt.setLong(6, idPlayground);
 			stmt.executeUpdate();
-			con.commit();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

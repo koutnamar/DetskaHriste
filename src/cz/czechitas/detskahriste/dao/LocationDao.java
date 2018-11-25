@@ -27,7 +27,6 @@ public class LocationDao extends JdbcDao {
 			stmt.setString(4, location.getLongtitude());
 			stmt.setLong(5, idPlayground);
 			stmt.executeUpdate();
-			con.commit();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

@@ -27,7 +27,6 @@ public class PlaygroundDao extends JdbcDao {
 			stmt.setString(1, playground.getOpen());
 			stmt.setString(2, playground.getTraffic());
 			stmt.executeUpdate();
-			con.commit();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
