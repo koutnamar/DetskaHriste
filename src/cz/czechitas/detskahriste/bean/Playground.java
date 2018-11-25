@@ -1,14 +1,15 @@
 package cz.czechitas.detskahriste.bean;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Playground {
 	private Long idPlayground;
 	private String open;
 	private String traffic;
 	private Location location;
-	private ArrayList<Photo> photoList;
-	private ArrayList<Comment> commentList;
+	private List<Photo> photoList;
+	private List<Comment> commentList;
 	private Double averageRating;
 
 	public Long getIdPlayground() {
@@ -43,19 +44,19 @@ public class Playground {
 		this.location = location;
 	}
 
-	public ArrayList<Photo> getPhotoList() {
+	public List<Photo> getPhotoList() {
 		return photoList;
 	}
 
-	public void setPhotoList(ArrayList<Photo> photoList) {
+	public void setPhotoList(List<Photo> photoList) {
 		this.photoList = photoList;
 	}
 
-	public ArrayList<Comment> getCommentList() {
+	public List<Comment> getCommentList() {
 		return commentList;
 	}
 
-	public void setCommentList(ArrayList<Comment> commentList) {
+	public void setCommentList(List<Comment> commentList) {
 		this.commentList = commentList;
 	}
 
