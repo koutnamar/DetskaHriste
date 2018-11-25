@@ -29,7 +29,7 @@
 
     <span style='color:white'></span>
     <table align = "center" >
-      <tr style="background-color: #D8BFD8">
+      <tr style="background-color: #9090ff">
         <th>Ulice</th>
         <th>Město</th>
         <th>Dopravní dostupnost</th>
