@@ -1,0 +1,25 @@
+1. Pripojte se k lokalni DB pod Workbench a spustte prikazy:
+create database detskahriste;
+
+create user 'detskahriste'@'%' identified by 'dvnojer89734';
+grant all on detskahriste.* to 'detskahriste'@'%';
+
+2. Vytvorte si novou connection ve Workbench
+Hostname: 127.0.0.1
+Port: 3306
+Username: detskahriste
+Password: dvnojer89734
+DefaultSchema: detskahriste
+
+3. Prihlaste se pod uzivatelem detskahriste a vytvorte si vsechny tabulky spustenim vsech prikazu z DB_hriste_create.txt
+
+4. Upravte si [workspace]\Tomcat v9.0 Server at localhost-config\server.xml - doplnte Resource uvedeny nize do GlobalNamingResources
+ <GlobalNamingResources>
+  <Resource name="detskahristeResource" auth="Container"
+         type="javax.sql.DataSource"
+         driverClassName="com.mysql.cj.jdbc.Driver"
+         url="jdbc:mysql://localhost:3306/detskahriste?serverTimezone=UTC"
+         username="detskahriste"
+         password="dvnojer89734"
+         maxTotal="10" maxIdle="2" maxWaitMillis="10000"/>
+ </GlobalNamingResources>

@@ -28,6 +28,9 @@
 	<h1 align="center">
 		<strong>DĚTSKÁ HŘIŠTĚ</strong>
 	</h1>
+	<p align = "center">
+      <i class="fas fa-horse"></i> <i class="fas fa-helicopter"></i> <i class="fas fa-spa"></i> <i class="fas fa-cloud-sun"></i> <i class="fas fa-car-side"></i> <i class="fas fa-basketball-ball"></i> <i class="fas fa-dog"></i> <i class="fas fa-futbol"></i> <i class="fas fa-rocket"></i> <i class="fas fa-tree"></i> <i class="fas fa-music"></i> <i class="far fa-bell"></i> <i class="far fa-grin-tongue-wink"></i> <i class="fas fa-paw"></i> <i class="fas fa-bicycle"></i> <i class="fas fa-anchor"></i> <i class="fas fa-crow"></i> <i class="fas fa-snowflake"></i> <i class="fas fa-volleyball-ball"></i> <i class="fas fa-dragon"></i> <i class="fas fa-hat-wizard"></i> <i class="fas fa-plane"></i> <i class="fas fa-child"></i> <i class="fas fa-umbrella"></i> <i class="fas fa-cat"></i>
+    </p>
 	<p>
 		<img id="borderimg1" src="IMG_0612.jpeg" alt="Dětská hřiště" width=25%><img
 			id="borderimg1" src="IMG_0502.jpeg" alt="Dětská hřiště" width=50%><img
@@ -58,8 +61,7 @@
 			<th>Dopravní dostupnost</th>
 			<th>Otevírací doba</th>
 			<th>Průměrná známka</th>
-		</tr>
-		
+		</tr>		
 			<%
 				ArrayList<Playground> list = playgroundDao.loadAll();
 				for (Playground playground : list) {
@@ -75,8 +77,6 @@
 			<%
 				}
 			%>
-
-		
 		
 	</table>
 	<a href="newZone.jsp" class="doprava">Přidat nové hřiště</a>
