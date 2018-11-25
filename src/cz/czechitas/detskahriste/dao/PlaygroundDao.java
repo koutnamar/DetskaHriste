@@ -12,10 +12,10 @@ import cz.czechitas.detskahriste.bean.Playground;
 import cz.czechitas.detskahriste.bean.Rating;
 
 public class PlaygroundDao extends JdbcDao {
-	private static final String LOAD = "SELECT * FROM PLAYGROUND WHERE idPlayground = ?"; // naèíst všechny záznamy z
+	private static final String LOAD = "SELECT * FROM playground WHERE idPlayground = ?"; // naèíst všechny záznamy z
 																							// tabulky playground
-	private static final String LOAD_ALL = "SELECT * FROM PLAYGROUND";
-	private static final String INSERT = "INSERT INTO PLAYGROUND(open,traffic) VALUES (?,?)";
+	private static final String LOAD_ALL = "SELECT * FROM playground";
+	private static final String INSERT = "INSERT INTO playground(open,traffic) VALUES (?,?)";
 	private final CommentDao commentDao = new CommentDao();
 	private final LocationDao locationDao = new LocationDao();
 	private final PhotoDao photoDao = new PhotoDao();
