@@ -3,6 +3,8 @@
 	pageEncoding="UTF-8"%>
 <jsp:useBean id="playgroundDao"
 	class="cz.czechitas.detskahriste.dao.PlaygroundDao" />
+<jsp:useBean id="ratingDao"
+	class="cz.czechitas.detskahriste.dao.RatingDao" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,21 +44,28 @@
 			<%=playground.getLocation().getStreet()%>
 			<br> Dopravní dostupnost:
 			<%=playground.getTraffic()%>
-			<br> GPS:
+			<%-- <br> GPS:
 			<%=playground.getLocation().getLatitude()%>
-			<%=playground.getLocation().getLongtitude()%>
+			<%=playground.getLocation().getLongtitude()%> --%>
 			<br> Otevírací doba:
 			<%=playground.getOpen()%>
 			<br>
 		</p>
 	</div>
 	<div>
+		
 		<h2>Hodnocení</h2>
-		<p>Průměrné skóre: 5</p>
+		<p>Průměrné skóre: <%=playground.getAverageRating() %></p>
 		<ul>
-			<li>Vybavenost: 5</li>
-			<li>Čistota: 5</li>
-			<li>Bezpečnost: 5</li>
+			<li>Vybavenost: 
+			<%= playground.getRating() == null? "Nehodnoceno" : playground.getRating().getEquipment() == null? "Nehodnoceno" : String.format("%.2f", playground.getRating().getEquipment()) %>
+			</li>
+			<li>Čistota: 
+			<%= playground.getRating() == null? "Nehodnoceno" : playground.getRating().getTidiness() %>
+			</li>
+			<li>Bezpečnost: 
+			<%= playground.getRating() == null? "Nehodnoceno" : playground.getRating().getTidiness() %>
+			</li>
 			<li>Množství okolní zeleně: 5</li>
 			<li>Zázemí pro doprovod dětí: 5</li>
 		</ul>
@@ -92,11 +101,11 @@
 	<div>
 		<h2>Komentáře</h2>
 		<p>
-			<strong class="fialova">PetrP - 12.03.2018 14:13</strong><br>
-			<i>Oblečený k tkání. Pásu od vystoupám věc fotogalerii názoru,
-				tím o lyžování hřebeni ukáže jejího ne tj. oslovil víkend. Stáda
-				voda z klonovacího nezávislé kréta spoustu o federální Atlantik v
-				řeč, zabíjí ať dokonce lyžařské, nazvaný oceánu přetrvávaj</i>
+			<strong class="fialova">PetrP - 12.03.2018 14:13</strong><br> <i>Oblečený
+				k tkání. Pásu od vystoupám věc fotogalerii názoru, tím o lyžování
+				hřebeni ukáže jejího ne tj. oslovil víkend. Stáda voda z klonovacího
+				nezávislé kréta spoustu o federální Atlantik v řeč, zabíjí ať
+				dokonce lyžařské, nazvaný oceánu přetrvávaj</i>
 		</p>
 		<p>
 			<strong class="fialova">xxxxxxxy - 15.02.2018 11:12</strong><br>
