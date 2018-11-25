@@ -55,7 +55,7 @@
 
 	<span style='color: white'></span>
 	<table align="center">
-		<tr style="background-color: #9090ff">
+		<tr style="background-color: #81BEF7">
 			<th>Ulice</th>
 			<th>Město</th>
 			<th>Dopravní dostupnost</th>
