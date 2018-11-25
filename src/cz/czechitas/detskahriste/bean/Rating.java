@@ -7,7 +7,6 @@ public class Rating {
 	public Double safety;
 	public Double environment;
 	public Double restZone;
-	public Long idFkPlayRating;
 
 	public Long getIdRating() {
 		return idRating;
@@ -57,12 +56,5 @@ public class Rating {
 		this.restZone = restZone;
 	}
 
-	public Long getIdFkPlayRating() {
-		return idFkPlayRating;
-	}
-
-	public void setIdFkPlayRating(Long idFkPlayRating) {
-		this.idFkPlayRating = idFkPlayRating;
-	}
 
 }
