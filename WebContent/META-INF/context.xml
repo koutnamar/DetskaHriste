@@ -2,10 +2,10 @@
 <Resource name="jdbc/detskahristeDB"
 	auth="Container"
 	type="javax.sql.DataSource"
-	username="root"  
-	password="123456"
+	username="detskahriste"  
+	password="dvnojer89734"
 	driverClassName="com.mysql.jdbc.Driver"
-	url="jdbc:mysql://localhost:3306/dajava?serverTimezone=UTC"
+	url="jdbc:mysql://168.63.22.235:3306/detskahriste?serverTimezone=UTC"
 	maxActive="15"
 	maxIdle="3"/>
 </Context>
