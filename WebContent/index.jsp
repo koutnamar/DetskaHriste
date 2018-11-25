@@ -59,30 +59,25 @@
 			<th>Otevírací doba</th>
 			<th>Průměrná známka</th>
 		</tr>
-		<tr>
+		
 			<%
 				ArrayList<Playground> list = playgroundDao.loadAll();
 				for (Playground playground : list) {
 			%>
+			<tr>
 			<td><a
 				href="detail.jsp?idPlayground=<%=playground.getIdPlayground()%>"><%=playground.getLocation().getStreet()%></a></td>
 			<td><%=playground.getLocation().getCity()%></td>
 			<td><%=playground.getTraffic()%></td>
 			<td><%=playground.getOpen()%></td>
-			<td><%=playground.getAverageRating()%></td>
+			<td><%=String.format("%.2f", playground.getAverageRating())%></td>
+			</tr>
 			<%
 				}
 			%>
 
-		</tr>
-		<tr>
-			<td><a href="detail.jsp">Zednická</a></td>
-			<td>Ostrava</td>
-			<td>Tram, Bus</td>
-			<td>10-18</td>
-			<td>4,5</td>
-		</tr>
-
+		
+		
 	</table>
 	<a href="newZone.jsp" class="doprava">Přidat nové hřiště</a>
 </body>
