@@ -1,4 +1,9 @@
-﻿CREATE SCHEMA `detskahriste` ;
+﻿#create database detskahriste;
+
+
+#create user 'detskahriste'@'%' identified by 'dvnojer89734';
+grant all on detskahriste.* to 'detskahriste'@'%';
+
 
 CREATE TABLE `detskahriste`.`playground` (
   `idPlayground` INT NOT NULL AUTO_INCREMENT,
