@@ -27,12 +27,16 @@
 		<strong>KOMENTÁŘE K HŘIŠTI Zednická, Ostrava</strong>
 	</h1>
 <%-- 	<form action="comment.jsp?idPlayground=<%=request.getParameter("idPlayground")%>" method="post" > --%>
-		<form action="CommentServlet" method="post" >
-		Jméno uživatele:<br> <input type="text" value="Jméno/nick"
-			class="seda" name="userField"><br> Komentář:<br> <input
-			type="text" value="Přidejte text komentáře" id="koment"
-			name="commentField"><br>
-		<button type="submit" name="action" value="createComment">Odeslat komentář</button>
+	<form action="CommentServlet" method="post" >
+		    <input type="hidden" name="idPlayground" value="<%=request.getParameter("idPlayground")%>" />
+		    Jméno uživatele:
+		    <br> 
+		    <input type="text" value="Jméno/nick" class="seda" name="userField">
+			<br> 
+			Komentář:
+			<br> 
+			<input type="text" value="Přidejte text komentáře" id="koment" name="commentField"><br>
+			<button type="submit" name="action" value="createComment">Odeslat komentář</button>
 	</form>
 	<jsp:useBean id="dao" class="cz.czechitas.detskahriste.dao.CommentDao"></jsp:useBean>
 	

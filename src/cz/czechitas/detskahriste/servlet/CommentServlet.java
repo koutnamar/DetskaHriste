@@ -20,7 +20,7 @@ import cz.czechitas.detskahriste.dao.CommentDao;
 @WebServlet(urlPatterns= {"/CommentServlet"})
 public class CommentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	private CommentDao commentDao = new CommentDao();
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -38,7 +38,15 @@ public class CommentServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		String action = request.getParameter("action");
-		System.out.println(action);
+		Long idPlayground = Long.parseLong(request.getParameter("idPlayground"));
+		System.out.println("action="+action);
+		System.out.println("idPlayground="+idPlayground);
+		String UserField userField = new UserField();
+		String CommentField commentField = new CommentField();
+		
+		
+		
+		
 		getServletContext().getRequestDispatcher("/comment.jsp").forward(request, response);
 	}
 
