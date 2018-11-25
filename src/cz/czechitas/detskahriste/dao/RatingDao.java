@@ -11,7 +11,7 @@ import cz.czechitas.detskahriste.bean.Rating;
 
 public class RatingDao extends JdbcDao {
 
-	private static final String LOAD = "SELECT AVG(equipment) as avgEquipment, AVG(tidiness) as avgTidiness, AVG(safety) as avgSafety, AVG(environment) as avgEnvironment, AVG(restZone) as avgRestZone FROM RATING WHERE idFkPlayRating=?";
+	private static final String LOAD = "SELECT AVG(equipment) as avgEquipment, AVG(tidiness) as avgTidiness, AVG(safety) as avgSafety, AVG(environment) as avgEnvironment, AVG(restZone) as avgRestZone FROM rating WHERE idFkPlayRating=?";
 	private static final String INSERT = "INSERT INTO rating(equipment, tidiness, safety, environment, restZone, idFkPlayRating) VALUES(?,?,?,?,?,?)";
 
 	public void save(Rating rating, Long idPlayground) {

@@ -63,12 +63,11 @@ ADD CONSTRAINT `idFkPlayRating`
 
 
 
-
 INSERT INTO `detskahriste`.`playground` (`open`, `traffic`) VALUES ('non-stop', 'tram');
 
 INSERT INTO `detskahriste`.`comment` (`user`, `text`, `date`, `idFkPlayCom`) VALUES ('Pepa', 'Super místo pro malé i věší děti', '2018-11-17', '1');
 
-INSERT INTO `detskahriste`.`location` (`street`, `city`, `latitude`, `longtitude`,`idFkPlayLoc`) VALUES ('Panelová', 'Ostrava', '49°49:48.2N', '18°10:58.5E','1');
+INSERT INTO `detskahriste`.`location` (`street`, `city`, `latitude`, `longtitude`,`idFkPlayLoc`) VALUES ('Panelová', 'Ostrava', '49°49.48.2N', '18°10.58.5E','1');
 
 INSERT INTO `detskahriste`.`rating` (`equipment`, `tidiness`, `safety`, `environment`, `restZone`, `idFkPlayRating`) VALUES ('3', '4', '5', '3', '3', '1');
 

@@ -1,8 +1,13 @@
+<%@page import="cz.czechitas.detskahriste.bean.Playground"%>
+<%@page import="cz.czechitas.detskahriste.dao.PlaygroundDao"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <jsp:useBean id="locationDao"
 	class="cz.czechitas.detskahriste.dao.LocationDao" />
+<jsp:useBean id="playgroundDao"
+	class="cz.czechitas.detskahriste.dao.PlaygroundDao" />
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,7 +40,7 @@
 				ArrayList<String> cityList = locationDao.loadCity();
 				for (String city : cityList) {
 			%>
-				<option><%=city%></option>
+			<option><%=city%></option>
 			<%
 				}
 			%>
@@ -51,47 +56,33 @@
 			<th>Ulice</th>
 			<th>Město</th>
 			<th>Dopravní dostupnost</th>
-			<th>Zeměpisná šířka</th>
-			<th>Zeměpisná délka</th>
-			<th>Otvírací doba</th>
+			<th>Otevírací doba</th>
 			<th>Průměrná známka</th>
+		</tr>
+		<tr>
+			<%
+				ArrayList<Playground> list = playgroundDao.loadAll();
+				for (Playground playground : list) {
+			%>
+			<td><a
+				href="detail.jsp?idPlayground=<%=playground.getIdPlayground()%>"><%=playground.getLocation().getStreet()%></a></td>
+			<td><%=playground.getLocation().getCity()%></td>
+			<td><%=playground.getTraffic()%></td>
+			<td><%=playground.getOpen()%></td>
+			<td><%=playground.getAverageRating()%></td>
+			<%
+				}
+			%>
+
 		</tr>
 		<tr>
 			<td><a href="detail.jsp">Zednická</a></td>
 			<td>Ostrava</td>
 			<td>Tram, Bus</td>
-			<td>49°49'53.4"N</td>
-			<td>18°10'34.0"E</td>
 			<td>10-18</td>
 			<td>4,5</td>
 		</tr>
-		<tr>
-			<td><a href="detail.jsp">Panelová</a></td>
-			<td>Ostrava</td>
-			<td>Tram</td>
-			<td>49°49'48.2"N</td>
-			<td>18°10'58.5"E</td>
-			<td>non-stop</td>
-			<td>3</td>
-		</tr>
-		<tr>
-			<td><a href="detail.jsp">Ukrajinská</a></td>
-			<td>Ostrava</td>
-			<td>Tram</td>
-			<td>49°49'37.7"N</td>
-			<td>18°11'27.8"E</td>
-			<td>non-stop</td>
-			<td>4,7</td>
-		</tr>
-		<tr>
-			<td><a href="detail.jsp">Lvovská</a></td>
-			<td>Ostrava</td>
-			<td>Tram, Bus</td>
-			<td>49°50'06.1"N</td>
-			<td>18°11'18.9"E</td>
-			<td>15-19</td>
-			<td>4,8</td>
-		</tr>
+
 	</table>
 	<a href="newZone.jsp" class="doprava">Přidat nové hřiště</a>
 </body>
