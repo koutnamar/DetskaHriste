@@ -2,7 +2,7 @@
 
 
 #create user 'detskahriste'@'%' identified by 'dvnojer89734';
-grant all on detskahriste.* to 'detskahriste'@'%';
+#grant all on detskahriste.* to 'detskahriste'@'%';
 
 
 CREATE TABLE `detskahriste`.`playground` (
