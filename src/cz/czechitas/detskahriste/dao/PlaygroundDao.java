@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import javax.sql.DataSource;
@@ -22,16 +23,22 @@ public class PlaygroundDao extends JdbcDao {
 	private final PhotoDao photoDao = new PhotoDao();
 	private final RatingDao ratingDao = new RatingDao();
 
-	public void save(Playground playground) {
+	public Playground save(Playground playground) {
+		Long idPlayground = null;
 		DataSource ds = getDataSource();
-		try (Connection con = ds.getConnection(); PreparedStatement stmt = con.prepareStatement(INSERT)) {
+		try (Connection con = ds.getConnection(); PreparedStatement stmt = con.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS)) {
 			stmt.setString(1, playground.getOpen());
 			stmt.setString(2, playground.getTraffic());
 			stmt.executeUpdate();
+			
+			ResultSet rs = stmt.getGeneratedKeys();
+			if (rs.next()) {
+				idPlayground = rs.getLong(1);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
+		return load(idPlayground);
 	}
 
 	public Playground load(Long idPlayground) {
