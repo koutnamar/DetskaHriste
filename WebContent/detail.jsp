@@ -1,8 +1,13 @@
+<%@page import="java.time.format.DateTimeFormatter"%>
+<%@page import="cz.czechitas.detskahriste.bean.Comment"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="cz.czechitas.detskahriste.bean.Playground"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <jsp:useBean id="playgroundDao"
 	class="cz.czechitas.detskahriste.dao.PlaygroundDao" />
+<jsp:useBean id="ratingDao"
+	class="cz.czechitas.detskahriste.dao.RatingDao" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,21 +47,28 @@
 			<%=playground.getLocation().getStreet()%>
 			<br> Dopravní dostupnost:
 			<%=playground.getTraffic()%>
-			<br> GPS:
+			<%-- <br> GPS:
 			<%=playground.getLocation().getLatitude()%>
-			<%=playground.getLocation().getLongtitude()%>
+			<%=playground.getLocation().getLongtitude()%> --%>
 			<br> Otevírací doba:
 			<%=playground.getOpen()%>
 			<br>
 		</p>
 	</div>
 	<div>
+		
 		<h2>Hodnocení</h2>
-		<p>Průměrné skóre: 5</p>
+		<p>Průměrné skóre: <%=playground.getAverageRating() %></p>
 		<ul>
-			<li>Vybavenost: 5</li>
-			<li>Čistota: 5</li>
-			<li>Bezpečnost: 5</li>
+			<li>Vybavenost: 
+			<%= playground.getRating() == null? "Nehodnoceno" : playground.getRating().getEquipment() == null? "Nehodnoceno" : String.format("%.2f", playground.getRating().getEquipment()) %>
+			</li>
+			<li>Čistota: 
+			<%= playground.getRating() == null? "Nehodnoceno" : playground.getRating().getTidiness() %>
+			</li>
+			<li>Bezpečnost: 
+			<%= playground.getRating() == null? "Nehodnoceno" : playground.getRating().getTidiness() %>
+			</li>
 			<li>Množství okolní zeleně: 5</li>
 			<li>Zázemí pro doprovod dětí: 5</li>
 		</ul>
@@ -90,40 +102,20 @@
 
 	</div>
 	<div>
+	<jsp:useBean id="dao" class="cz.czechitas.detskahriste.dao.CommentDao"></jsp:useBean>
 		<h2>Komentáře</h2>
-		<p>
-			<strong class="fialova">PetrP - 12.03.2018 14:13</strong><br>
-			<i>Oblečený k tkání. Pásu od vystoupám věc fotogalerii názoru,
-				tím o lyžování hřebeni ukáže jejího ne tj. oslovil víkend. Stáda
-				voda z klonovacího nezávislé kréta spoustu o federální Atlantik v
-				řeč, zabíjí ať dokonce lyžařské, nazvaný oceánu přetrvávaj</i>
-		</p>
-		<p>
-			<strong class="fialova">xxxxxxxy - 15.02.2018 11:12</strong><br>
-			<i>Lodi 1 jasnější mlze skutečnost putuje zamrzlé textu, dobrá že
-				lyžařské vy domech lidí. Ptáků magma jedete větru ji označených,
-				kariéru dva říkat 360° lidstvo a směna, jen vousům a přeléval 1
-				vědci</i>
-		</p>
-		<p>
-			<strong class="fialova">ZdenkaZs - 14.02.2018 09:13</strong><br>
-			<i>Bílou mozkové přísun obyvatelé změn geometrické dlouho, noc
-				žije zapomenu rok dlouhokrkých nákaza.</i>
-		</p>
-		<p>
-			<strong class="fialova">LenkaMalá - 11.01.2018 09:13</strong><br>
-			<i>Silou a zemí i pohybovaly severoamerická z zemědělské
-				dodržování zapamatovat softwarový s největšího sezonní, i objevili
-				aktivitu s jihoafrické souvislosti za sem prozkoumány potravou o
-				svědomí, polárního půjčovna řečení ho primitivních. </i>
-		<p>
-			<strong class="fialova">IvaVelká - 10.01.2018 09:10</strong><br>
-			<i>Dočkala vrcholky opadavých hmyz pět dá rozmnožováním splňoval,
-				začal to a počasí písně techniku u panenská malém dvě rozeznatelné
-				či ruce. Před té aktivitu u aktivitách ta vložit poškození budova,
-				zajímavou, může ať popis ruin kurzů dá popis natočen </i>
-		</p>
-
+		<%
+		ArrayList<Comment> listCom = dao.load(Long.valueOf(request.getParameter("idPlayground")));
+		for (int i =0; i<5 || i<listCom.size(); i++) {
+	%>
+	<p>
+		<strong class="fialova">
+		<%=listCom.get(i).getUser()%> - <%=listCom.get(i).getDate().format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm"))%></strong><br>
+		<i><%=listCom.get(i).getText()%></i><br>
+		<br>
+	</p>
+	<%}%>
+		
 	</div>
 	<a href="comment.jsp" class="doleva">Zobrazit všechny komentáře</a>
 </body>

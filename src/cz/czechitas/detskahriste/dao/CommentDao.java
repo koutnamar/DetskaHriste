@@ -11,7 +11,7 @@ import javax.sql.DataSource;
 import cz.czechitas.detskahriste.bean.Comment;
 
 public class CommentDao extends JdbcDao {
-	private static final String LOAD = "SELECT * FROM comment WHERE idFkPlayCom = ?"; //naèíst všechny záznamy z tabulky comment
+	private static final String LOAD = "SELECT * FROM comment WHERE idFkPlayCom = ? order by date desc"; //naèíst všechny záznamy z tabulky comment
 	private static final String INSERT = "INSERT INTO comment(user,text,date,idFkPlayCom) VALUES (?,?,?,?)";
 
 	public void save(Comment comment, Long idPlayground) {
@@ -43,7 +43,7 @@ public class CommentDao extends JdbcDao {
 				com.setIdComment(rs.getLong("idComment"));
 				com.setUser(rs.getString("user"));
 				com.setText(rs.getString("text"));
-				com.setDate(rs.getTimestamp("date").toLocalDateTime());;
+				com.setDate(rs.getTimestamp("date").toLocalDateTime());
 				list.add(com);
 			}
 		} catch (SQLException e) {
