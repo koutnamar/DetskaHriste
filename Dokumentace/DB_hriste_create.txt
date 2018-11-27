@@ -18,8 +18,8 @@ CREATE TABLE `detskahriste`.`playground` (
 CREATE TABLE `detskahriste`.`location` (
   `street` VARCHAR(45) NOT NULL,
   `city` VARCHAR(45) NOT NULL,
-  `latitude` VARCHAR(45) NOT NULL,
-  `longtitude` VARCHAR(45) NOT NULL,
+  `latitude` VARCHAR(45) NULL,
+  `longtitude` VARCHAR(45) NULL,
   `idFkPlayLoc` INT NOT NULL);
 CREATE TABLE `detskahriste`.`photo` (
   `idPhoto` INT NOT NULL AUTO_INCREMENT,

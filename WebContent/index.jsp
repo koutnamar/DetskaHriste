@@ -37,47 +37,60 @@
 			id="borderimg1" src="IMG_0592.jpeg" alt="Dětská hřiště" width=25%>
 	</p>
 	<p align="center">
-		<select>
+	<form action="index.jsp" method="post">
+		<select name="city">
 			<option disabled selected>Vybrat město</option>
 			<%
 				ArrayList<String> cityList = locationDao.loadCity();
 				for (String city : cityList) {
 			%>
-			<option><%=city%></option>
+			<option value="<%=city%>"><%=city%></option>
 			<%
 				}
 			%>
-		</select> <input type="text" name="street">
+
+
+		</select> <input type="text" name="street" />
 		<button type="submit" name="search">
+			<!--  přidat action???-->
 			<Strong>Hledat </Strong><i class="fas fa-search"></i>
 		</button>
+	</form>
 	</p>
 
 	<span style='color: white'></span>
 	<table align="center">
-		<tr style="background-color: #9090ff">
+		<tr style="background-color: #81BEF7">
 			<th>Ulice</th>
 			<th>Město</th>
 			<th>Dopravní dostupnost</th>
 			<th>Otevírací doba</th>
-			<th>Průměrná známka</th>
-		</tr>		
-			<%
-				ArrayList<Playground> list = playgroundDao.loadAll();
-				for (Playground playground : list) {
-			%>
-			<tr>
+			<th>Průměrné hodnocení</th>
+		</tr>
+		<%
+			ArrayList<Playground> list;
+			String city = request.getParameter("city");
+			String street = request.getParameter("street");
+			if (city == null && street == null) {
+				list = playgroundDao.loadAll();
+			} else {
+				list = playgroundDao.loadCityStreet(city, street);
+			}
+			for (Playground playground : list) {
+		%>
+		<tr>
 			<td><a
 				href="detail.jsp?idPlayground=<%=playground.getIdPlayground()%>"><%=playground.getLocation().getStreet()%></a></td>
 			<td><%=playground.getLocation().getCity()%></td>
+
 			<td><%=playground.getTraffic()%></td>
 			<td><%=playground.getOpen()%></td>
 			<td><%=String.format("%.2f", playground.getAverageRating())%></td>
-			</tr>
-			<%
-				}
-			%>
-		
+		</tr>
+		<%
+			}
+		%>
+
 	</table>
 	<a href="newZone.jsp" class="doprava">Přidat nové hřiště</a>
 </body>

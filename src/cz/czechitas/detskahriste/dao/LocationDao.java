@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import javax.sql.DataSource;
@@ -20,7 +21,8 @@ public class LocationDao extends JdbcDao {
 	public void save(Location location, Long idPlayground) {
 
 		DataSource ds = getDataSource();
-		try (Connection con = ds.getConnection(); PreparedStatement stmt = con.prepareStatement(INSERT)) {
+		try (Connection con = ds.getConnection(); 
+				PreparedStatement stmt = con.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS)) {
 			stmt.setString(1, location.getStreet());
 			stmt.setString(2, location.getCity());
 			stmt.setString(3, location.getLatitude());
