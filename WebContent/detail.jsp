@@ -36,7 +36,10 @@
 		<h2>Parametry hřiště</h2>
 
 		<%
-			Long idPlayground = Long.parseLong(request.getParameter("idPlayground"));
+			Long idPlayground = null;
+			if (request.getParameter("idPlayground") != null) {
+				idPlayground = Long.parseLong(request.getParameter("idPlayground"));
+			}
 			Playground playground = playgroundDao.load(idPlayground);
 		%>
 
@@ -56,44 +59,54 @@
 		</p>
 	</div>
 	<div>
-		
+
 		<h2>Hodnocení</h2>
-		<p>Průměrné skóre: <%=playground.getAverageRating() %></p>
+		<p>
+			Průměrné skóre:
+			<%=playground.getAverageRating()%></p>
 		<ul>
-			<li>Vybavenost: 
-			<%= playground.getRating() == null? "Nehodnoceno" : playground.getRating().getEquipment() == null? "Nehodnoceno" : String.format("%.2f", playground.getRating().getEquipment()) %>
+			<li>Vybavenost: <%=playground.getRating() == null || playground.getRating().getEquipment() == null ? "Nehodnoceno"
+					: String.format("%.2f", playground.getRating().getEquipment())%>
 			</li>
-			<li>Čistota: 
-			<%= playground.getRating() == null? "Nehodnoceno" : playground.getRating().getTidiness() %>
+			<li>Čistota: <%=playground.getRating() == null || playground.getRating().getTidiness() == null ? "Nehodnoceno"
+					: String.format("%.2f", playground.getRating().getTidiness())%>
+
 			</li>
-			<li>Bezpečnost: 
-			<%= playground.getRating() == null? "Nehodnoceno" : playground.getRating().getTidiness() %>
+			<li>Bezpečnost: <%=playground.getRating() == null || playground.getRating().getSafety() == null ? "Nehodnoceno"
+					: String.format("%.2f", playground.getRating().getSafety())%>
+
 			</li>
-			<li>Množství okolní zeleně: 5</li>
-			<li>Zázemí pro doprovod dětí: 5</li>
+			<li>Množství okolní zeleně: <%=playground.getRating() == null || playground.getRating().getEnvironment() == null ? "Nehodnoceno"
+					: String.format("%.2f", playground.getRating().getEnvironment())%>
+			</li>
+			<li>Zázemí pro doprovod dětí: <%=playground.getRating() == null || playground.getRating().getRestZone() == null ? "Nehodnoceno"
+					: String.format("%.2f", playground.getRating().getRestZone())%> 
+			</li>
 		</ul>
 	</div>
 	<div>
 		<h2>Zadat nové hodnocení</h2>
-		<form action="">
-			Vybavenost <input type="radio" name="vyb" value="1">1 <input
+		<form action="saveRating">
+		    <input type="hidden" name="idPlayground" value="<%=idPlayground%>"/>
+			Vybavenost <input type="radio" name="vyb" value="1" checked>1 <input
 				type="radio" name="vyb" value="2">2 <input type="radio"
 				name="vyb" value="3">3 <input type="radio" name="vyb"
 				value="4">4 <input type="radio" name="vyb" value="5">5<br>
-			Čistota <input type="radio" name="cist" value="1">1 <input
+			Čistota <input type="radio" name="cist" value="1" checked>1 <input
 				type="radio" name="cist" value="2">2 <input type="radio"
 				name="cist" value="3">3 <input type="radio" name="cist"
 				value="4">4 <input type="radio" name="cist" value="5">5<br>
-			Bezpečnost <input type="radio" name="bezp" value="1">1 <input
+			Bezpečnost <input type="radio" name="bezp" value="1" checked>1 <input
 				type="radio" name="bezp" value="2">2 <input type="radio"
 				name="bezp" value="3">3 <input type="radio" name="bezp"
 				value="4">4 <input type="radio" name="bezp" value="5">5<br>
-			Množství okolní zeleně <input type="radio" name="zelen" value="1">1
+			Množství okolní zeleně <input type="radio" name="zelen" value="1" checked>1
 			<input type="radio" name="zelen" value="2">2 <input
 				type="radio" name="zelen" value="3">3 <input type="radio"
 				name="zelen" value="4">4 <input type="radio" name="zelen"
-				value="5">5<br> Zázemí pro doprovod dětí <input
-				type="radio" name="zazemi" value="1">1 <input type="radio"
+				value="5">5<br> 
+			Zázemí pro doprovod dětí <input
+				type="radio" name="zazemi" value="1" checked>1 <input type="radio"
 				name="zazemi" value="2">2 <input type="radio" name="zazemi"
 				value="3">3 <input type="radio" name="zazemi" value="4">4
 			<input type="radio" name="zazemi" value="5">5<br>
