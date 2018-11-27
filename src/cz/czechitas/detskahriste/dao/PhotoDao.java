@@ -25,7 +25,7 @@ public class PhotoDao extends JdbcDao {
 
 	public void save(Photo photo, Long idPlayground, InputStream is) {
 		DataSource ds = getDataSource();
-		try (Connection con = ds.getConnection(); PreparedStatement stmt = con.prepareStatement("INSERT")) {
+		try (Connection con = ds.getConnection(); PreparedStatement stmt = con.prepareStatement(INSERT)) {
 			stmt.setString(1, photo.getNamePhoto());
 			stmt.setLong(2, idPlayground);
 			stmt.setBinaryStream(3, is);

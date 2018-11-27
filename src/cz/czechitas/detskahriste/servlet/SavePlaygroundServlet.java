@@ -2,20 +2,27 @@ package cz.czechitas.detskahriste.servlet;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import cz.czechitas.detskahriste.bean.Location;
+import cz.czechitas.detskahriste.bean.Photo;
 import cz.czechitas.detskahriste.bean.Playground;
 import cz.czechitas.detskahriste.dao.LocationDao;
+import cz.czechitas.detskahriste.dao.PhotoDao;
 import cz.czechitas.detskahriste.dao.PlaygroundDao;
 
 /**
  * Servlet implementation class SavePlaygroundServlet
  */
 @WebServlet("/savePlayground")
+@MultipartConfig(fileSizeThreshold = 1024 * 1024,
+maxFileSize = 1024 * 1024 * 5, 
+maxRequestSize = 1024 * 1024 * 5 * 5)
 public class SavePlaygroundServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -56,6 +63,30 @@ public class SavePlaygroundServlet extends HttpServlet {
 		 LocationDao loc = new LocationDao();
 		 loc.save(newLocation, playground.getIdPlayground());
 		 
+		 
+		 ///////////
+		 Photo photoMain = new Photo();
+		 Photo photoNext1 = new Photo();
+		 Photo photoNext2 = new Photo();
+				 
+		 PhotoDao photoDao = new PhotoDao();
+			// Main
+			Part part = request.getPart("imageMain");
+			photoMain.setNamePhoto(getFileName(part));
+
+			photoDao.save(photoMain, playground.getIdPlayground(), part.getInputStream());
+	
+			// Next 1
+			part = request.getPart("imageNext1");
+			photoNext1.setNamePhoto(getFileName(part));
+
+			photoDao.save(photoNext1, playground.getIdPlayground(), part.getInputStream());
+	
+			// Next 2
+			part = request.getPart("imageNext2");
+			photoNext2.setNamePhoto(getFileName(part));
+
+			photoDao.save(photoNext2, playground.getIdPlayground(), part.getInputStream());
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		 getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
 	}
@@ -68,6 +99,12 @@ public class SavePlaygroundServlet extends HttpServlet {
 		doGet(request, response);
 	}
 	 
-		
+	private String getFileName(Part part) {
+	    for (String content : part.getHeader("content-disposition").split(";")) {
+	        if (content.trim().startsWith("filename"))
+	            return content.substring(content.indexOf("=") + 2, content.length() - 1);
+	        }
+	    return "image.jpg";
+	}		
 
 }
