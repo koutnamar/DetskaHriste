@@ -36,7 +36,7 @@
       <button class="btnOdebrat">Odebrat</button>
     </div>
     <div class="clearfix"></div>
-    <form action="">
+    <form action="savePlayground">
       <table class="tabNoveHriste">
         <tr>
           <td>Město:</td>
@@ -50,7 +50,7 @@
           <td colspan="2">Dopravní dostupnost:</td>
         </tr>
         <tr>
-          <td colspan="2"><input type="text"></td>
+          <td colspan="2"><input type="text" name="traffic"></td>
         </tr>
         <tr>
           <td colspan="2">GPS souřadnice:</td>
@@ -63,7 +63,7 @@
           <td colspan="2">Otevírací doba:</td>
         </tr>
         <tr>
-          <td colspan="2"><input type="text"></td>
+          <td colspan="2"><input type="text" name="open"></td>
         </tr>
       </table>
       <button type="submit">Přidat nové hřiště</button>
