@@ -43,8 +43,8 @@
           <td>Ulice:</td>
         </tr>
         <tr>
-          <td><input type="text"></td>
-          <td><input type="text"></td>
+          <td><input type="text" name="city"></td>
+          <td><input type="text" name="street"></td>
         </tr>
         <tr>
           <td colspan="2">Dopravní dostupnost:</td>
@@ -56,8 +56,8 @@
           <td colspan="2">GPS souřadnice:</td>
         </tr>
         <tr>
-          <td><input type="text"></td>
-          <td><input type="text"></td>
+          <td><input type="text" name="latitude"></td>
+          <td><input type="text" name="longitude"></td>
         </tr>
         <tr>
           <td colspan="2">Otevírací doba:</td>
