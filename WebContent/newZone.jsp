@@ -31,19 +31,19 @@
   width: 200px;
   margin: 0;
   color: #fff;
-  background: #1FB264;
+  background: #5375bd;
   border: none;
   padding: 10px;
   border-radius: 4px;
-  border-bottom: 4px solid #15824B;
   transition: all .2s ease;
   outline: none;
   text-transform: uppercase;
   font-weight: 700;
+  box-shadow: 5px 5px 0px 0px #BDBDBD;
 }
 
 .file-upload-btn:hover {
-  background: #1AA059;
+  background: #819ff7;
   color: #ffffff;
   transition: all .2s ease;
   cursor: pointer;
@@ -72,13 +72,13 @@
 
 .image-upload-wrap {
   margin-top: 20px;
-  border: 4px dashed #1FB264;
+  border: 4px dashed #5375bd;
   position: relative;
 }
 
 .image-dropping,
 .image-upload-wrap:hover {
-  background-color: #1FB264;
+  background-color: #819ff7;
   border: 4px dashed #ffffff;
 }
 
@@ -94,7 +94,7 @@
 .drag-text h3 {
   font-weight: 100;
   text-transform: uppercase;
-  color: #15824B;
+  color: #48339e;
   padding: 60px 0;
 }
 
@@ -113,7 +113,7 @@
   border: none;
   padding: 10px;
   border-radius: 4px;
-  border-bottom: 4px solid #b02818;
+  box-shadow: 5px 5px 0px 0px #BDBDBD;
   transition: all .2s ease;
   outline: none;
   text-transform: uppercase;
@@ -218,7 +218,7 @@ function readURL(input, section) {
 			  <div id="image-upload-wrap__main" class="image-upload-wrap">
 			    <input id="file-upload-input__main" class="file-upload-input" type='file' onchange="readURL(this,'main');" accept="image/*" name="imageMain"/>
 			    <div class="drag-text">
-			      <h3>Přetáhni obrázek zde, nebo použij tlačítko "Přidat ..."</h3>
+			      <h3>Přetáhni obrázek zde, nebo použij tlačítko "Přidat..."</h3>
 			    </div>
 			  </div>
 			  <div id="file-upload-content__main" class="file-upload-content">
@@ -234,7 +234,7 @@ function readURL(input, section) {
 			  <div id="image-upload-wrap__next1" class="image-upload-wrap">
 			    <input id="file-upload-input__next1" class="file-upload-input" type='file' onchange="readURL(this,'next1');" accept="image/*" name="imageNext1"/>
 			    <div class="drag-text">
-			      <h3>Přetáhni obrázek zde, nebo použij tlačítko "Přidat ..."</h3>
+			      <h3>Přetáhni obrázek zde, nebo použij tlačítko "Přidat..."</h3>
 			    </div>
 			  </div>
 			  <div id="file-upload-content__next1" class="file-upload-content">
@@ -245,12 +245,12 @@ function readURL(input, section) {
 			  </div>
 			</div>
 			<div class="file-upload">
-			  <button class="file-upload-btn" type="button" onclick="$('#file-upload-input__next2').trigger( 'click' )">Další obrázek</button>
+			  <button class="file-upload-btn" type="button" onclick="$('#file-upload-input__next2').trigger( 'click' )">Přidat další obrázek</button>
 			
 			  <div id="image-upload-wrap__next2" class="image-upload-wrap">
 			    <input id="file-upload-input__next2" class="file-upload-input" type='file' onchange="readURL(this,'next2');" accept="image/*" name="imageNext2"/>
 			    <div class="drag-text">
-			      <h3>Přetáhni obrázek zde, nebo použij tlačítko "Přidat ..."</h3>
+			      <h3>Přetáhni obrázek zde, nebo použij tlačítko "Přidat..."</h3>
 			    </div>
 			  </div>
 			  <div id="file-upload-content__next2" class="file-upload-content">
@@ -262,33 +262,7 @@ function readURL(input, section) {
 			</div>
 		</div>
 	    
-	    <div class="clearfix"></div>
-	    
-	    <div class="sedefoto1_container">
-	      <div class="sedefoto1">
-	        <button class="plus">+</button>
-	      </div>
-	      <div class="clearfix"></div>
-	      <button class="btnOdebrat">Odebrat</button>
-	    </div>
-	      
-	    <div class="sedefoto2_container">
-		    <div class="sedefoto2">
-		      <button class="plus">+</button>
-		    </div>
-	      <div class="clearfix"></div>
-	      <button class="btnOdebrat">Odebrat</button>
-	    </div>
-	    <div class="sedefoto2_container">
-	    <div class="sedefoto2">
-	      <button class="plus">+</button>
-	    </div>
-	      <div class="clearfix"></div>
-	      <button class="btnOdebrat">Odebrat</button>
-	    </div>
-	    <div class="clearfix"></div>
-
-      <table class="tabNoveHriste">
+      <table class="tabNoveHriste" frame="void" align="center">
         <tr>
           <td>Město:</td>
           <td>Ulice:</td>
@@ -317,7 +291,9 @@ function readURL(input, section) {
           <td colspan="2"><input type="text" name="open"></td>
         </tr>
       </table>
-      <button type="submit">Přidat nové hřiště</button>
+      <div align ="center">
+      <button type="submit">Uložit nové hřiště</button>
+      </div>
     </form>
   </body>
 </html>
