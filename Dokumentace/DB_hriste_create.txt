@@ -23,8 +23,8 @@ CREATE TABLE `detskahriste`.`location` (
   `idFkPlayLoc` INT NOT NULL);
 CREATE TABLE `detskahriste`.`photo` (
   `idPhoto` INT NOT NULL AUTO_INCREMENT,
-  `namePhoto` VARCHAR(45) NOT NULL,
-  `path` VARCHAR(255) NOT NULL,
+  `namePhoto` VARCHAR(255) NULL,
+  `content` LONGBLOB NULL,
   `idFkPlayPhoto` INT NOT NULL,
   PRIMARY KEY (`idPhoto`));
 CREATE TABLE `detskahriste`.`comment` (
@@ -75,13 +75,16 @@ ADD CONSTRAINT `idFkPlayRating`
 
 INSERT INTO `detskahriste`.`playground` (`open`, `traffic`) VALUES ('non-stop', 'tram');
 
-INSERT INTO `detskahriste`.`comment` (`user`, `text`, `date`, `idFkPlayCom`) VALUES ('Pepa', 'Super místo pro malé i věší děti', '2018-11-17', '1');
+INSERT INTO `detskahriste`.`comment` (`user`, `text`, `date`, `idFkPlayCom`) VALUES ('Pepa', 'Super místo pro malé i větší děti', '2018-11-17', '1');
 
 INSERT INTO `detskahriste`.`location` (`street`, `city`, `latitude`, `longtitude`,`idFkPlayLoc`) VALUES ('Panelová', 'Ostrava', '49°49.48.2N', '18°10.58.5E','1');
 
 INSERT INTO `detskahriste`.`rating` (`equipment`, `tidiness`, `safety`, `environment`, `restZone`, `idFkPlayRating`) VALUES ('3', '4', '5', '3', '3', '1');
 
-INSERT INTO `detskahriste`.`photo` (`namePhoto`, `path`, `idFkPlayPhoto`) VALUES ('Panelová1', 'detskahriste/photos/panelova1.jpg', '1');
+
+
+
+INSERT INTO `detskahriste`.`photo` (`namePhoto`, `idFkPlayPhoto`) VALUES ('C:\DetskaHriste\kote.jpg','1');
 
 
 SELECT * FROM playground,location WHERE playground.idPlayground=location.idFkPlayLoc;
