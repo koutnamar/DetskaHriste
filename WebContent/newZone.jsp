@@ -31,7 +31,7 @@
   width: 200px;
   margin: 0;
   color: #fff;
-  background: #5375bd;
+  background: #81BEF7;
   border: none;
   padding: 10px;
   border-radius: 4px;
@@ -43,7 +43,7 @@
 }
 
 .file-upload-btn:hover {
-  background: #819ff7;
+  background: #6992cf;
   color: #ffffff;
   transition: all .2s ease;
   cursor: pointer;
@@ -72,14 +72,16 @@
 
 .image-upload-wrap {
   margin-top: 20px;
-  border: 4px dashed #5375bd;
+  border: 4px dashed #81BEF7;
+  border-radius: 20px;
   position: relative;
 }
 
 .image-dropping,
 .image-upload-wrap:hover {
-  background-color: #819ff7;
+  background-color: #81BEF7;
   border: 4px dashed #ffffff;
+  border-radius: 20px;
 }
 
 .image-title-wrap {
@@ -94,7 +96,7 @@
 .drag-text h3 {
   font-weight: 100;
   text-transform: uppercase;
-  color: #48339e;
+  color: #6992cf;
   padding: 60px 0;
 }
 
@@ -166,7 +168,25 @@
   border: 0;
   transition: all .2s ease;
 }
+img{
+  vertical-align: middle;
+  box-shadow: 0px 0px 0px 0px  #BDBDBD ;
+  border-radius: 20px; 
+  
+}
+  table {
+    border-collapse: collapse;
+    width: auto;
+}
 
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {background-color: #CEE3F6;}
+tr:nth-child(odd) {background-color: #CEE3F6;}
+ }
 
 </style>
 

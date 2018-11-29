@@ -58,7 +58,7 @@
 	</p>
 
 	<span style='color: white'></span>
-	<table align="center">
+	<table class = "tabIndexNoveHriste" align="center">
 		<tr style="background-color: #81BEF7">
 			<th>Ulice</th>
 			<th>Město</th>
