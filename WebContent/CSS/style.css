@@ -50,7 +50,7 @@ select{
 button{
   font-size: 15px;
   border-width: 2px;
-  border-color: #819FF7;  
+  border-color: #81BEF7;  
   margin-left:auto;
   background-color: #81BEF7; 
 }
@@ -76,65 +76,6 @@ button{
   height: 50px;
 }
 
-.sedefoto1 {
-  background-color: #808484; 
-  width: 400px;
-  height: 250px;
-  float: left;
-  border-radius: 20px;
-  bird
-}
-
-.sedefoto1_container {
-  width: 400px;
-  height: 280px;
-  float: left;
-  margin: 0px 20px 0px 0px;
-}
-
-.sedefoto2 {
-  background-color: #808484; 
-  width: 200px;
-  height: 250px;
-  float: left;
-  border-radius: 20px;
-  margin: 0px 20px 0px 0px;
-}
-
-.sedefoto2_container {
-  width: 200px;
-  height: 280px;
-  float: left;
-  margin: 0px 20px 0px 0px;
-}
-
-.plus {
-  background-color: #3ed78e;
-  border-radius: 20px;
-  width: 40px;
-  height: 40px;
-  float: right;
-  margin: 190px 20px 0px 0px;
-  border:none;
-}
-
-.btnOdebrat {
-  float: right;
-  margin: 10px 0px 0px 0px;
-  border-radius: 15px;
-  height: 30px;
-  line-height: 30px;
-  background: #A00;
-  padding:0px 20px;
-  color:#FFF;
-  border:none;
-  cursor: pointer;
-  
-}
-.btnOdebrat:hover {
- background: #B00; 
-}
-
 .tabNoveHriste {
   background-color: #CEE3F6;
   width: 450 px;
@@ -145,6 +86,4 @@ i {
   text-align: center;
   font-size: 20px;
   text-shadow: 5px 5px #BDBDBD;
-  
-  
 }
