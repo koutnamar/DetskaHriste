@@ -52,7 +52,6 @@
 
 		</select> <input type="text" name="street" />
 		<button type="submit" name="search">
-			<!--  přidat action???-->
 			<Strong>Hledat </Strong><i class="fas fa-search"></i>
 		</button>
 	</form>
