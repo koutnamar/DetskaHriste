@@ -85,5 +85,10 @@ button{
 i {
   text-align: center;
   font-size: 20px;
+  font-family: 'Kanit', sans-serif;
+}
+.ip{
+	text-align: center;
+  font-size: 20px;
   text-shadow: 5px 5px #BDBDBD;
 }

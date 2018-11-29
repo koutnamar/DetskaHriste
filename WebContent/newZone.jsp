@@ -170,9 +170,9 @@
 }
 img{
   vertical-align: middle;
+  horizontal-align: middle;
   box-shadow: 0px 0px 0px 0px  #BDBDBD ;
   border-radius: 20px; 
-  
 }
   table {
     border-collapse: collapse;
@@ -282,7 +282,7 @@ function readURL(input, section) {
 			</div>
 		</div>
 	    
-      <table class="tabNoveHriste" frame="void" align="center">
+      <table class="tabNoveHriste" align="center">
         <tr>
           <td>Město:</td>
           <td>Ulice:</td>
