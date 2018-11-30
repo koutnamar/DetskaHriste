@@ -14,7 +14,7 @@
     <a href="index.jsp" class="doprava">Hlavní stránka</a><br>
     <a href="detail.jsp" class="doprava">Detail hřiště</a>
     <h1 align = "center"><strong>FOTOGALERIE HŘIŠTĚ Zednická, Ostrava</strong></h1>
-    <div class="photocontainer">
+    <div class="photocontainer" align="center">
       <div>
         <img src = "IMG_0612.jpeg" alt = "Dětská hřiště" width = 50% >
       </div>  
