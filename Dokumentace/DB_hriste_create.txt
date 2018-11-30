@@ -19,7 +19,7 @@ CREATE TABLE `detskahriste`.`location` (
   `street` VARCHAR(45) NOT NULL,
   `city` VARCHAR(45) NOT NULL,
   `latitude` VARCHAR(45) NULL,
-  `longtitude` VARCHAR(45) NULL,
+  `longitude` VARCHAR(45) NULL,
   `idFkPlayLoc` INT NOT NULL);
 CREATE TABLE `detskahriste`.`photo` (
   `idPhoto` INT NOT NULL AUTO_INCREMENT,
@@ -31,7 +31,7 @@ CREATE TABLE `detskahriste`.`comment` (
   `idComment` INT NOT NULL AUTO_INCREMENT,
   `user` VARCHAR(45) NOT NULL,
   `text` VARCHAR(255) NOT NULL,
-  `date` DATE NOT NULL,
+  `date` TIMESTAMP NOT NULL,
   `idFkPlayCom` INT NOT NULL,
   PRIMARY KEY (`idComment`));
 CREATE TABLE `detskahriste`.`rating` (
@@ -75,7 +75,7 @@ ADD CONSTRAINT `idFkPlayRating`
 
 INSERT INTO `detskahriste`.`playground` (`open`, `traffic`) VALUES ('non-stop', 'tram');
 
-INSERT INTO `detskahriste`.`comment` (`user`, `text`, `date`, `idFkPlayCom`) VALUES ('Pepa', 'Super místo pro malé i větší děti', '2018-11-17', '1');
+INSERT INTO `detskahriste`.`comment` (`user`, `text`, `date`, `idFkPlayCom`) VALUES ('Pepa', 'Super místo pro malé i větší děti', '2018-11-17 12:00:00', '1');
 
 INSERT INTO `detskahriste`.`location` (`street`, `city`, `latitude`, `longtitude`,`idFkPlayLoc`) VALUES ('Panelová', 'Ostrava', '49°49.48.2N', '18°10.58.5E','1');
 

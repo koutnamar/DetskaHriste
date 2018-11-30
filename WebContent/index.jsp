@@ -38,6 +38,7 @@
 	</p>
 	<p align="center">
 	<form action="index.jsp" method="post">
+	
 		<select name="city">
 			<option disabled selected>Vybrat město</option>
 			<%

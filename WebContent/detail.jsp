@@ -52,7 +52,7 @@
 			<%=playground.getTraffic()%>
 			<%-- <br> GPS:
 			<%=playground.getLocation().getLatitude()%>
-			<%=playground.getLocation().getLongtitude()%> --%>
+			<%=playground.getLocation().getLongitude()%> --%>
 			<br> Otevírací doba:
 			<%=playground.getOpen()%>
 			<br>

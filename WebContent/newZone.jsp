@@ -302,7 +302,7 @@ function readURL(input, section) {
         </tr>
         <tr>
           <td><input type="text" name="latitude"></td>
-          <td><input type="text" name = "longtitude"></td>
+          <td><input type="text" name = "longitude"></td>
         </tr>
         <tr>
           <td colspan="2">Otevírací doba:</td>
