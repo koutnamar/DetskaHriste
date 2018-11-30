@@ -23,12 +23,12 @@
 	integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
 	crossorigin="anonymous">
 </head>
-<body text-align:center>
+<body>
 
 	<h1 align="center">
 		<strong>DĚTSKÁ HŘIŠTĚ</strong>
 	</h1>
-	<p align = "center">
+	<p class="ip" align = "center">
       <i class="fas fa-horse"></i> <i class="fas fa-helicopter"></i> <i class="fas fa-spa"></i> <i class="fas fa-cloud-sun"></i> <i class="fas fa-car-side"></i> <i class="fas fa-basketball-ball"></i> <i class="fas fa-dog"></i> <i class="fas fa-futbol"></i> <i class="fas fa-rocket"></i> <i class="fas fa-tree"></i> <i class="fas fa-music"></i> <i class="far fa-bell"></i> <i class="far fa-grin-tongue-wink"></i> <i class="fas fa-paw"></i> <i class="fas fa-bicycle"></i> <i class="fas fa-anchor"></i> <i class="fas fa-crow"></i> <i class="fas fa-snowflake"></i> <i class="fas fa-volleyball-ball"></i> <i class="fas fa-dragon"></i> <i class="fas fa-hat-wizard"></i> <i class="fas fa-plane"></i> <i class="fas fa-child"></i> <i class="fas fa-umbrella"></i> <i class="fas fa-cat"></i>
     </p>
 	<p>
@@ -36,10 +36,9 @@
 			id="borderimg1" src="IMG_0502.jpeg" alt="Dětská hřiště" width=50%><img
 			id="borderimg1" src="IMG_0592.jpeg" alt="Dětská hřiště" width=25%>
 	</p>
-	<p align="center">
-	<form action="index.jsp" method="post">
 	
-		<select name="city">
+	<form action="index.jsp" method="post">
+		<p align="center"><select name="city">
 			<option disabled selected>Vybrat město</option>
 			<%
 				ArrayList<String> cityList = locationDao.loadCity();
@@ -54,12 +53,11 @@
 		</select> <input type="text" name="street" />
 		<button type="submit" name="search">
 			<Strong>Hledat </Strong><i class="fas fa-search"></i>
-		</button>
+		</button></p>
 	</form>
-	</p>
 
 	<span style='color: white'></span>
-	<table class = "tabIndexNoveHriste" align="center">
+	<table align="center">
 		<tr style="background-color: #81BEF7">
 			<th>Ulice</th>
 			<th>Město</th>

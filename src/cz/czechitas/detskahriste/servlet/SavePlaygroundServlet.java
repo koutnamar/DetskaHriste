@@ -45,13 +45,13 @@ public class SavePlaygroundServlet extends HttpServlet {
 		 String city = request.getParameter("city");
 		 String street = request.getParameter("street");
 		 String latitude = request.getParameter("latitude");
-		 String longtitude = request.getParameter("longtitude");
+		 String longitude = request.getParameter("longitude");
 		 Playground newPlayground = new Playground();
 		 Location newLocation = new Location();
 		 newLocation.setCity(city);
 		 newLocation.setStreet(street);
 		 newLocation.setLatitude(latitude);
-		 newLocation.setLongtitude(longtitude);
+		 newLocation.setLongitude(longitude);
 		 newPlayground.setOpen(open);
 		 newPlayground.setTraffic(traffic);
 		 newPlayground.setLocation(newLocation);

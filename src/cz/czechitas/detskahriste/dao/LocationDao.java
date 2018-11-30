@@ -16,7 +16,7 @@ public class LocationDao extends JdbcDao {
 
 	private static final String LOAD = "SELECT * FROM location WHERE idFkPlayLoc = ?";
 	private static final String LOAD_CITY = "SELECT DISTINCT city AS uniqueCity FROM location";
-	private static final String INSERT = "INSERT INTO location(street,city,latitude,longtitude,idFkPlayLoc) VALUES (?, ?,?,?,?)";
+	private static final String INSERT = "INSERT INTO location(street,city,latitude,longitude,idFkPlayLoc) VALUES (?, ?,?,?,?)";
 
 	public void save(Location location, Long idPlayground) {
 
@@ -26,7 +26,7 @@ public class LocationDao extends JdbcDao {
 			stmt.setString(1, location.getStreet());
 			stmt.setString(2, location.getCity());
 			stmt.setString(3, location.getLatitude());
-			stmt.setString(4, location.getLongtitude());
+			stmt.setString(4, location.getLongitude());
 			stmt.setLong(5, idPlayground);
 			stmt.executeUpdate();
 		} catch (SQLException e) {
@@ -44,7 +44,7 @@ public class LocationDao extends JdbcDao {
 				loc.setStreet(rs.getString("street"));
 				loc.setCity(rs.getString("city"));
 				loc.setLatitude(rs.getString("latitude"));
-				loc.setLongtitude(rs.getString("longtitude"));
+				loc.setLongitude(rs.getString("longitude"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
