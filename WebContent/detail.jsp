@@ -46,7 +46,7 @@
 	<% if (idPhoto != null){ %>
 		<img id="borderimg1" src="DownloadPhoto?idPhoto=<%=idPhoto%>" alt="Dětská hřiště" width=50%>
 		<%} else { %>
-		<img id="borderimg1" src="/images/defaultPlayground.jpeg" alt="Dětská hřiště" width=50%>
+		<img id="borderimg1" src="images/defaultPlayground.jpeg" alt="Dětská hřiště" width=50%>
 		<%}%>
 	</p>
 	<a href="photos.jsp?idPlayground=<%=request.getParameter("idPlayground")%>" class="doprava">Otevřít fotogalerii</a>
