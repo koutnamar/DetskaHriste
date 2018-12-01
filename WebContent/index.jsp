@@ -77,8 +77,8 @@
 			for (Playground playground : list) {
 		%>
 		<tr>
-			<td><a
-				href="detail.jsp?idPlayground=<%=playground.getIdPlayground()%>"><%=playground.getLocation().getStreet()%></a></td>
+			<td>
+			<a href="detail.jsp?idPlayground=<%=playground.getIdPlayground()%>"><%=playground.getLocation().getStreet()%></a></td>
 			<td><%=playground.getLocation().getCity()%></td>
 
 			<td><%=playground.getTraffic()%></td>
