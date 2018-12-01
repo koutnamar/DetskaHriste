@@ -57,7 +57,10 @@
 		</div>
 		<%
 			}
-			}
+			} else {%>
+				<p> Pro dané hřiště nebyla uložena žádná fotografie.
+				</p>
+		<%	}
 		%>
 
 	</div>

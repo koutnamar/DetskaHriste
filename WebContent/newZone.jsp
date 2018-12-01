@@ -320,14 +320,14 @@ function readURL(input, section) {
           <td>Ulice:</td>
         </tr>
         <tr>
-          <td><input type="text" name="city"></td>
-          <td><input type="text" name ="street"></td>
+          <td><input type="text" name="city" required></td>
+          <td><input type="text" name ="street" required></td>
         </tr>
         <tr>
           <td colspan="2">Dopravní dostupnost:</td>
         </tr>
         <tr>
-          <td colspan="2"><input type="text" name="traffic"></td>
+          <td colspan="2"><input type="text" name="traffic" required></td>
         </tr>
         <tr>
           <td colspan="2">GPS souřadnice:</td>
@@ -340,7 +340,7 @@ function readURL(input, section) {
           <td colspan="2">Otevírací doba:</td>
         </tr>
         <tr>
-          <td colspan="2"><input type="text" name="open"></td>
+          <td colspan="2"><input type="text" name="open" required></td>
         </tr>
         </div> 
       </table>

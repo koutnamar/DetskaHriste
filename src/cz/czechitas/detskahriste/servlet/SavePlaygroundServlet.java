@@ -77,24 +77,26 @@ public class SavePlaygroundServlet extends HttpServlet {
 			// Main
 			Part part = request.getPart("imageMain");
 			photoMain.setNamePhoto(getFileName(part));
-
-			photoDao.save(photoMain, playground.getIdPlayground(), part.getInputStream());
-
+			if (photoMain.getNamePhoto() != null && photoMain.getNamePhoto().length() > 0) {
+				photoDao.save(photoMain, playground.getIdPlayground(), part.getInputStream());
+			}
 			// Next 1
 			part = request.getPart("imageNext1");
 			photoNext1.setNamePhoto(getFileName(part));
-
+			if (photoNext1.getNamePhoto() != null && photoNext1.getNamePhoto().length() > 0) {
 			photoDao.save(photoNext1, playground.getIdPlayground(), part.getInputStream());
-
+			}
 			// Next 2
 			part = request.getPart("imageNext2");
 			photoNext2.setNamePhoto(getFileName(part));
-
+			if (photoNext2.getNamePhoto() != null && photoNext2.getNamePhoto().length() > 0) {
 			photoDao.save(photoNext2, playground.getIdPlayground(), part.getInputStream());
-			// response.getWriter().append("Served at: ").append(request.getContextPath());
+			}
+			
 		}
-		
-		// request.setAttribute("list", PlaygroundDao.loadAll()); //chci naèíst celý seznam i s novým høištìm a pøedat na index 
+
+		// request.setAttribute("list", PlaygroundDao.loadAll()); //chci naèíst celý
+		// seznam i s novým høištìm a pøedat na index
 		getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
 	}
 
