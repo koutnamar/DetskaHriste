@@ -26,7 +26,7 @@
 }%>
 	<a href="index.jsp" class="doprava">Hlavní stránka</a>
 	<br>
-	<a href="detail.jsp" class="doprava">Detail hřiště</a>
+	<a href="detail.jsp?idPlayground=<%=request.getParameter("idPlayground")%>" class="doprava">Detail hřiště</a>
 	<h1 align="center">
 		<strong>KOMENTÁŘE K HŘIŠTI Zednická, Ostrava</strong>
 	</h1>

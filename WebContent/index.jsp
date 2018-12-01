@@ -1,3 +1,6 @@
+<%@page import="java.util.Collections"%>
+<%@page import="java.util.Collection"%>
+<%@page import="java.util.Comparator"%>
 <%@page import="cz.czechitas.detskahriste.bean.Playground"%>
 <%@page import="cz.czechitas.detskahriste.dao.PlaygroundDao"%>
 <%@page import="java.util.ArrayList"%>
@@ -44,11 +47,12 @@
 			class="fas fa-cat"></i>
 	</p>
 	<p>
-		<img id="borderimg1" src="images/imageLeft.jpeg" alt="Dětská hřiště" width=25%><img
-			id="borderimg1" src="images/imageMain.jpeg" alt="Dětská hřiště" width=50%><img
-			id="borderimg1" src="images/imageRight.jpeg" alt="Dětská hřiště" width=25%>
+		<img id="borderimg1" src="images/imageLeft.jpeg" alt="Dětská hřiště"
+			width=25%><img id="borderimg1" src="images/imageMain.jpeg"
+			alt="Dětská hřiště" width=50%><img id="borderimg1"
+			src="images/imageRight.jpeg" alt="Dětská hřiště" width=25%>
 	</p>
-
+	<a href="newZone.jsp" class="doprava">Přidat nové hřiště</a>
 	<form action="index.jsp" method="post">
 		<p align="center">
 			<select name="filterCity">
@@ -67,10 +71,11 @@
 				%>
 
 
-		</select> <input type="text" name="filterStreet" />
-		<button type="submit" name="search">
-			Hledat <i class="fas fa-search"></i>
-		</button></p>
+			</select> <input type="text" name="filterStreet" />
+			<button type="submit" name="search">
+				Hledat <i class="fas fa-search"></i>
+			</button>
+		</p>
 	</form>
 
 	<span style='color: white'></span>
@@ -87,23 +92,44 @@
 	%>
 	<table align="center">
 		<tr style="background-color: #81BEF7">
-			<th>Ulice</th>
 			<th>Město</th>
+			<th>Ulice</th>
 			<th>Dopravní dostupnost</th>
 			<th>Otevírací doba</th>
-			<th>Průměrné hodnocení</th>
+			<th><a href="index.jsp?sort=rating" alt="Průměrné hodnocení"> Hodnocení </a></th>
 		</tr>
 		<%
-			for (Playground playground : list) {
+			if ("rating".equals(request.getParameter("sort"))) {
+					Collections.sort(list, new Comparator<Playground>() {
+						@Override
+						public int compare(Playground lhs, Playground rhs) {
+							// -1 - less than, 1 - greater than, 0 - equal, all inversed for descending
+							return lhs.getAverageRating() > rhs.getAverageRating() ? -1
+									: (lhs.getAverageRating() < rhs.getAverageRating()) ? 1 : 0;
+						}
+					});
+				}
+				for (Playground playground : list) {
 		%>
 		<tr>
-			<td>
-			<a href="detail.jsp?idPlayground=<%=playground.getIdPlayground()%>"><%=playground.getLocation().getStreet()%></a></td>
 			<td><%=playground.getLocation().getCity()%></td>
+			<td><a
+				href="detail.jsp?idPlayground=<%=playground.getIdPlayground()%>"><%=playground.getLocation().getStreet()%></a></td>
+
 
 			<td><%=playground.getTraffic()%></td>
-			<td><%=playground.getOpen()%></td>
-			<td><%=String.format("%.2f", playground.getAverageRating())%></td>
+			<td align="center"><%=playground.getOpen()%></td>
+			<td align="center">
+				<%
+					if (playground.getAverageRating() == 0) {
+				%> --- <%
+					} else {
+				%> <%=String.format("%.2f", playground.getAverageRating())%>
+
+				<%
+					}
+				%>
+			</td>
 		</tr>
 		<%
 			}
@@ -111,12 +137,12 @@
 
 	</table>
 	<%
-		}
-		else { %>
-			<p> Nebyl nalezen žádný záznam. </p>
-	<%		
+		} else {
+	%>
+	<p>Nebyl nalezen žádný záznam.</p>
+	<%
 		}
 	%>
-	<a href="newZone.jsp" class="doprava">Přidat nové hřiště</a>
+
 </body>
 </html>
