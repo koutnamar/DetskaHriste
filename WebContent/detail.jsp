@@ -52,7 +52,8 @@
 	<% if (idPhoto != null){ %>
 		<img id="borderimg1" src="DownloadPhoto?idPhoto=<%=idPhoto%>" alt="Dětská hřiště" width=300px>
 		<%} else { %>
-		<img id="borderimg1" src="images/defaultPlayground.jpeg" alt="Dětská hřiště" width=100px>
+		<img id="borderimg1" src="images/defaultPlayground.jpeg" alt="Dětská hřiště" width=300px>
+		<p align="center"> Ilustrační foto</p>
 		<%}%>
 	</p>
 	<a
