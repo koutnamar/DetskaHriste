@@ -1,3 +1,5 @@
+<%@page import="cz.czechitas.detskahriste.bean.Photo"%>
+<%@page import="cz.czechitas.detskahriste.dao.PhotoDao"%>
 <%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="cz.czechitas.detskahriste.bean.Comment"%>
 <%@page import="java.util.ArrayList"%>
@@ -24,27 +26,35 @@
 	crossorigin="anonymous">
 </head>
 <body>
+	
 <% if (request.getParameter("idPlayground") == null || request.getParameter("idPlayground").length()==0){
 	pageContext.forward("/error.jsp");
 	return;
 }%>
+<% 	Long idPlayground = Long.parseLong(request.getParameter("idPlayground"));
+	PhotoDao photoDao = new PhotoDao();
+	ArrayList<Photo> photos = photoDao.load(idPlayground);
+	Long idPhoto = (photos !=null && photos.size()>0 ? photos.get(0).getIdPhoto():null);//ternární operátor - podmínka
+%>
 	<a href="index.jsp" class="doprava">Hlavní stránka</a>
 	<h1 align="center">
 		<strong>DETAIL HŘIŠTĚ</strong>
 	</h1>
 	<p align="center">
-		<img id="borderimg1" src="IMG_0502.jpeg" alt="Dětská hřiště" width=50%>
+	<% if (idPhoto != null){ %>
+		<img id="borderimg1" src="DownloadPhoto?idPhoto=<%=idPhoto%>" alt="Dětská hřiště" width=50%>
+		<%} else { %>
+		<img id="borderimg1" src="/images/defaultPlayground.jpg" alt="Dětská hřiště" width=50%>
+		<%}%>
 	</p>
-	<a href="photos.jsp" class="doprava">Otevřít fotogalerii</a>
+	<a href="photos.jsp?idPlayground=<%=request.getParameter("idPlayground")%>" class="doprava">Otevřít fotogalerii</a>
+	
+	
 	<div>
 		<h2>Parametry hřiště</h2>
 
 		<%
-			Long idPlayground = null;
-			if (request.getParameter("idPlayground") != null) {
-				idPlayground = Long.parseLong(request.getParameter("idPlayground"));
-			}
-			Playground playground = playgroundDao.load(idPlayground);
+			Playground playground = playgroundDao.load(idPlayground);	
 		%>
 
 		<p>

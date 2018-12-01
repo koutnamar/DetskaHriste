@@ -1,5 +1,6 @@
 package cz.czechitas.detskahriste.dao;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -21,6 +22,7 @@ public class PhotoDao extends JdbcDao {
 
 	private static final String LOAD_CONTENT = "select content from photo where idPhoto=?";
 	private static final String LOAD = "select idPhoto, namePhoto from photo WHERE idFkPlayPhoto = ?";
+	private static final String LOAD_PHOTO = "select idPhoto, namePhoto from photo WHERE idPhoto = ?";
 	private static final String INSERT = "insert into photo(namePhoto,idFkPlayPhoto, content) values ( ?, ?,?)";
 
 	public void save(Photo photo, Long idPlayground, InputStream is) {
@@ -56,6 +58,24 @@ public class PhotoDao extends JdbcDao {
 		return photos;
 	}
 
+	
+	public Photo loadPhoto(Long idPhoto) {
+		Photo photo = new Photo();
+
+		DataSource ds = getDataSource();
+		try (Connection con = ds.getConnection(); PreparedStatement stmt = con.prepareStatement(LOAD_PHOTO)) {
+			stmt.setLong(1, idPhoto);
+			ResultSet rs = stmt.executeQuery();
+			if (rs.next()) {
+				photo.setIdPhoto(rs.getLong("idPhoto"));
+				photo.setNamePhoto(rs.getString("namePhoto"));				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return photo;
+	}
+	
 	public byte[] loadContent(Photo photo) {
 		byte[] content = null;
 
@@ -65,13 +85,26 @@ public class PhotoDao extends JdbcDao {
 			stmt.setLong(1, photo.getIdPhoto());
 			ResultSet rs = stmt.executeQuery();
 			rs.next();
-			content = rs.getBinaryStream("content").readAllBytes();
+			
+			
+			content = readAllBytes(rs.getBinaryStream("content"));
 		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		return content;
 	}
 
+	private byte[] readAllBytes(InputStream is) {
+		ByteArrayOutputStream ous = new ByteArrayOutputStream();
+		byte[] buffer = new byte[4096];
+		int read = 0;
+        try {
+			while ((read = is.read(buffer)) != -1) {
+			    ous.write(buffer, 0, read);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return ous.toByteArray();
+	}
 }

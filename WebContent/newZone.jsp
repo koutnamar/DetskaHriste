@@ -31,7 +31,7 @@
   width: 200px;
   margin: 0;
   color: #fff;
-  background: #81BEF7;
+  background: #5375bd;
   border: none;
   padding: 10px;
   border-radius: 4px;
@@ -43,7 +43,7 @@
 }
 
 .file-upload-btn:hover {
-  background: #6992cf;
+  background: #819ff7;
   color: #ffffff;
   transition: all .2s ease;
   cursor: pointer;
@@ -72,39 +72,57 @@
 
 .image-upload-wrap {
   margin-top: 20px;
-  border: 4px dashed #81BEF7;
-  border-radius: 20px;
+  border: 1px solid #5375bd;
   position: relative;
+  background-color: #808484;
+  border-color: #808484;
+  border-radius: 20px;
+  color: #D3D3D3; 
 }
 
 .image-dropping,
 .image-upload-wrap:hover {
-  background-color: #81BEF7;
-  border: 4px dashed #ffffff;
-  border-radius: 20px;
+  background-color: #f0f0f0;
+  border: 2px solid #ffffff;
+  color: #3c3c3c;
 }
 
 .image-title-wrap {
-  padding: 0 15px 15px 15px;
+  float: left;
+  position: absolute;
+  #padding: 0 15px 15px 15px;
   color: #222;
 }
 
-.drag-text {
+
+#.sedefoto1 {
+#  background-color: #808484; 
+#  width: 400px;
+#  height: 250px;
+#  float: left;
+#  border-radius: 20px;
+#  bird
+#}
+
+.drag-text {  
   text-align: center;
+  height: 200px;  
+   vertical-align:middle;
 }
 
-.drag-text h3 {
+.drag-text span {
   font-weight: 100;
-  text-transform: uppercase;
-  color: #6992cf;
-  padding: 60px 0;
+  font-style: italic;
+  ###color: grey;
+  padding: 100px 0;
+  ###color: #D3D3D3;
 }
 
 .file-upload-image {
   max-height: 200px;
   max-width: 200px;
   margin: auto;
-  padding: 20px;
+  pading: 20px;
 }
 
 .remove-image {
@@ -153,12 +171,12 @@
   border-bottom: 4px solid #15824B;
   transition: all .2s ease;
   outline: none;
-  text-transform: uppercase;
+  #text-transform: uppercase;
   font-weight: 700;
 }
 
 .submit-btn:hover {
-  background: #1AA059;
+  background: #1AA059 ;
   color: #ffffff;
   transition: all .2s ease;
   cursor: pointer;
@@ -168,25 +186,37 @@
   border: 0;
   transition: all .2s ease;
 }
-img{
-  vertical-align: middle;
-  horizontal-align: middle;
-  box-shadow: 0px 0px 0px 0px  #BDBDBD ;
-  border-radius: 20px; 
-}
-  table {
-    border-collapse: collapse;
-    width: auto;
+
+.plus2 {
+  background-color: #3ed78e;
+  border-radius: 20px;
+  width: 40px;
+  height: 40px;
+  float: right;
+  margin: 10px 10px 30px 80px;
+  border:none;
 }
 
-th, td {
-    text-align: left;
-    padding: 8px;
+.minus2 {
+  background-color: red;
+  border-radius: 20px;
+  width: 40px;
+  height: 40px;
+  float: right;
+  margin: 10px 10px 30px 130px;
+  border:none;
 }
 
-tr:nth-child(even) {background-color: #CEE3F6;}
-tr:nth-child(odd) {background-color: #CEE3F6;}
- }
+.tabNoveHriste {
+  background-color: #CEE3F6;
+  width: 450 px;
+  border:none;
+  align:center;
+}
+
+.tabNoveHriste tr{
+  background-color: #CEE3F6;
+}
 
 </style>
 
@@ -233,55 +263,57 @@ function readURL(input, section) {
     <form action="savePlayground" enctype="multipart/form-data" method="post">
 		<div class="main">
 			<div class="file-upload">
-			  <button class="file-upload-btn" type="button" onclick="$('#file-upload-input__main').trigger( 'click' )">Přidat hlavní obrázek</button>
-			
 			  <div id="image-upload-wrap__main" class="image-upload-wrap">
-			    <input id="file-upload-input__main" class="file-upload-input" type='file' onchange="readURL(this,'main');" accept="image/*" name="imageMain"/>
+			     <input id="file-upload-input__main" class="file-upload-input" type='file' onchange="readURL(this,'main');" accept="image/*" name="imageMain"/>  
 			    <div class="drag-text">
-			      <h3>Přetáhni obrázek zde, nebo použij tlačítko "Přidat..."</h3>
-			    </div>
+			      <button class="plus2" alt="Přidat hlavní obrázek" onclick="$('#file-upload-input__main').trigger( 'click' )">+</button>
+			      <span>Přetáhni obrázek zde, nebo použij tlačítko "+"</span>
+			    </div>			    
 			  </div>
 			  <div id="file-upload-content__main" class="file-upload-content">
-			    <img id="file-upload-image__main" class="file-upload-image" src="#" alt="your image" />
 			    <div id="image-title-wrap__main"class="image-title-wrap">
-			      <button type="button" onclick="removeUpload('main')" class="remove-image">Odebrat</button>
-			    </div>
+			      <button type="button" onclick="removeUpload('main')" class="minus2">-</button>
+			    </div>			    
+			    <img id="file-upload-image__main" class="file-upload-image" src="#" alt="Váš obrázek ...">
+			    </img>
+
 			  </div>
 			</div>
 			<div class="file-upload">
-			  <button class="file-upload-btn" type="button" onclick="$('#file-upload-input__next1').trigger( 'click' )">Přidat další obrázek</button>
-			
 			  <div id="image-upload-wrap__next1" class="image-upload-wrap">
 			    <input id="file-upload-input__next1" class="file-upload-input" type='file' onchange="readURL(this,'next1');" accept="image/*" name="imageNext1"/>
 			    <div class="drag-text">
-			      <h3>Přetáhni obrázek zde, nebo použij tlačítko "Přidat..."</h3>
+			      <button class="plus2" alt="Přidat další obrázek" onclick="$('#file-upload-input__next1').trigger( 'click' )">+</button>
+			      <span>Přetáhni obrázek zde, nebo použij tlačítko "+"</span>
 			    </div>
 			  </div>
 			  <div id="file-upload-content__next1" class="file-upload-content">
-			    <img id="file-upload-image__next1" class="file-upload-image" src="#" alt="your image" />
 			    <div id="image-title-wrap__next1"class="image-title-wrap">
-			      <button type="button" onclick="removeUpload('next1')" class="remove-image">Odebrat</button>
+			      <button type="button" onclick="removeUpload('next1')" class="minus2">-</button>
 			    </div>
+			    <img id="file-upload-image__next1" class="file-upload-image" src="#" alt="Váš obrázek ..." />
+
 			  </div>
 			</div>
 			<div class="file-upload">
-			  <button class="file-upload-btn" type="button" onclick="$('#file-upload-input__next2').trigger( 'click' )">Přidat další obrázek</button>
-			
 			  <div id="image-upload-wrap__next2" class="image-upload-wrap">
 			    <input id="file-upload-input__next2" class="file-upload-input" type='file' onchange="readURL(this,'next2');" accept="image/*" name="imageNext2"/>
 			    <div class="drag-text">
-			      <h3>Přetáhni obrázek zde, nebo použij tlačítko "Přidat..."</h3>
+			      <button class="plus2" alt="Přidat další obrázek" onclick="$('#file-upload-input__next2').trigger( 'click' )">+</button>
+			      <span>Přetáhni obrázek zde, nebo použij tlačítko "+"</span>
 			    </div>
 			  </div>
 			  <div id="file-upload-content__next2" class="file-upload-content">
-			    <img id="file-upload-image__next2" class="file-upload-image" src="#" alt="your image" />
-			    <div id="image-title-wrap__next2"class="image-title-wrap">
-			      <button type="button" onclick="removeUpload('next2')" class="remove-image">Odebrat</button>
+			  <div id="image-title-wrap__next2"class="image-title-wrap">
+			      <button type="button" onclick="removeUpload('next2')" class="minus2">-</button>
 			    </div>
+			    <img id="file-upload-image__next2" class="file-upload-image" src="#" alt="Váš obrázek ..." />
+			    
 			  </div>
 			</div>
 		</div>
 	    
+	 
       <table class="tabNoveHriste" align="center">
         <tr>
           <td>Město:</td>
@@ -310,7 +342,9 @@ function readURL(input, section) {
         <tr>
           <td colspan="2"><input type="text" name="open"></td>
         </tr>
+        </div> 
       </table>
+       
       <div align ="center">
       <button type="submit" name="action" value="newZone">Uložit nové hřiště</button>
       </div>
