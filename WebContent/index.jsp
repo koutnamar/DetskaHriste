@@ -43,11 +43,11 @@
 			class="fas fa-child"></i> <i class="fas fa-umbrella"></i> <i
 			class="fas fa-cat"></i>
 	</p>
-	<p>
+	<div class="photoIndex">
 		<img id="borderimg1" src="images/imageLeft.jpeg" alt="Dětská hřiště" width=25%><img
 			id="borderimg1" src="images/imageMain.jpeg" alt="Dětská hřiště" width=50%><img
-			id="borderimg1" src="images/imageRight.jpeg" alt="Dětská hřiště" width=25%>
-	</p>
+			id="borderimg1" src="images/imageRight.jpeg" alt="Dětská hřiště" width=25%>		
+	</div>
 
 	<form action="index.jsp" method="post">
 		<p align="center">
