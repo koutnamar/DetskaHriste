@@ -15,8 +15,8 @@ import cz.czechitas.detskahriste.bean.Rating;
 public class PlaygroundDao extends JdbcDao {
 	private static final String LOAD = "SELECT * FROM playground WHERE idPlayground = ?"; // naèíst všechny záznamy z
 																							// tabulky playground
-	private static final String LOAD_ALL = "SELECT * FROM playground";
-	private static final String LOAD_ALL_SELECT = "select * from playground, location where playground.idPlayground=location.idFkPlayLoc and lower(location.city) like lower(?) and lower(location.street) like lower(?)";
+	private static final String LOAD_ALL = "select playground.* from playground, location where playground.idPlayground=location.idFkPlayLoc order by location.city, location.street";
+	private static final String LOAD_ALL_SELECT = "select * from playground, location where playground.idPlayground=location.idFkPlayLoc and lower(location.city) like lower(?) and lower(location.street) like lower(?) order by location.city, location.street";
 	private static final String INSERT = "INSERT INTO playground(open,traffic) VALUES (?,?)";
 	//private static final String SORT = "SELECT * FROM playground ORDER BY ";
 	private final CommentDao commentDao = new CommentDao();

@@ -23,3 +23,14 @@ DefaultSchema: detskahriste
          password="dvnojer89734"
          maxTotal="10" maxIdle="2" maxWaitMillis="10000"/>
  </GlobalNamingResources>
+
+5. PRO DB na CLOUDU - upravte si [workspace]\Tomcat v9.0 Server at localhost-config\server.xml - doplnte Resource uvedeny nize do GlobalNamingResources
+ <GlobalNamingResources>
+  <Resource name="detskahristeResource" auth="Container"
+         type="javax.sql.DataSource"
+         driverClassName="com.mysql.cj.jdbc.Driver"
+         url="jdbc:mysql://168.63.22.235:3306/detskahriste?serverTimezone=UTC"
+         username="detskahriste"
+         password="dvnojer89734"
+         maxTotal="10" maxIdle="2" maxWaitMillis="10000"/>
+ </GlobalNamingResources>
