@@ -1,17 +1,5 @@
-<!--<Context>
+<Context>
    <ResourceLink global="detskahristeResource"
                 name="detskahristeResource"
                 type="javax.sql.DataSource"/>
-</Context>
--->
-<Context>
-<Resource name="jdbc/detskahristeDB"
-	auth="Container"
-	type="javax.sql.DataSource"
-	username="detskahriste"  
-	password="dvnojer89734"
-	driverClassName="com.mysql.jdbc.Driver"	
-	url="jdbc:mysql://168.63.22.235:3306/detskahriste?serverTimezone=UTC"
-	maxActive="15"
-	maxIdle="3"/>
 </Context>

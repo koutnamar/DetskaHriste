@@ -15,7 +15,7 @@ public class JdbcDao {
 	protected DataSource getDataSource() {
 		try {
 			Context ctx = new InitialContext();
-			return (DataSource)ctx.lookup("java:/comp/env/jdbc/detskahristeDB");
+			return (DataSource)ctx.lookup("java:/comp/env/detskahristeResource");
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
