@@ -18,6 +18,7 @@ public class PlaygroundDao extends JdbcDao {
 	private static final String LOAD_ALL = "SELECT * FROM playground";
 	private static final String LOAD_ALL_SELECT = "select * from playground, location where playground.idPlayground=location.idFkPlayLoc and location.city like ? and location.street like ?";
 	private static final String INSERT = "INSERT INTO playground(open,traffic) VALUES (?,?)";
+	//private static final String SORT = "SELECT * FROM playground ORDER BY ";
 	private final CommentDao commentDao = new CommentDao();
 	private final LocationDao locationDao = new LocationDao();
 	private final PhotoDao photoDao = new PhotoDao();

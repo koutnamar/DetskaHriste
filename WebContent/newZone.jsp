@@ -312,7 +312,7 @@ function readURL(input, section) {
         </tr>
       </table>
       <div align ="center">
-      <button type="submit">Uložit nové hřiště</button>
+      <button type="submit" name="action" value="newZone">Uložit nové hřiště</button>
       </div>
     </form>
   </body>

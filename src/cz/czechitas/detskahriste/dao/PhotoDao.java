@@ -19,9 +19,9 @@ import cz.czechitas.detskahriste.bean.Photo;
 
 public class PhotoDao extends JdbcDao {
 
-	private static final String LOAD_CONTENT = "select CONTENT from photo where idPhoto=?";
+	private static final String LOAD_CONTENT = "select content from photo where idPhoto=?";
 	private static final String LOAD = "select idPhoto, namePhoto from photo WHERE idFkPlayPhoto = ?";
-	private static final String INSERT = "insert into photo(namePhoto,idFkPlayPhoto, CONTENT) values ( ?, ?,?)";
+	private static final String INSERT = "insert into photo(namePhoto,idFkPlayPhoto, content) values ( ?, ?,?)";
 
 	public void save(Photo photo, Long idPlayground, InputStream is) {
 		DataSource ds = getDataSource();
@@ -37,8 +37,8 @@ public class PhotoDao extends JdbcDao {
 		}
 	}
 
-	public List<Photo> load(Long idPlayground) {
-		List<Photo> photos = new ArrayList<Photo>();
+	public ArrayList<Photo> load(Long idPlayground) {
+		ArrayList<Photo> photos = new ArrayList<Photo>();
 
 		DataSource ds = getDataSource();
 		try (Connection con = ds.getConnection(); PreparedStatement stmt = con.prepareStatement(LOAD)) {
@@ -61,13 +61,11 @@ public class PhotoDao extends JdbcDao {
 
 		System.out.println("Get image content for id=" + photo.getIdPhoto());
 		DataSource ds = getDataSource();
-		try (Connection con = ds.getConnection(); PreparedStatement stmt = con.prepareStatement("LOAD_CONTENT")) {
+		try (Connection con = ds.getConnection(); PreparedStatement stmt = con.prepareStatement(LOAD_CONTENT)) {
 			stmt.setLong(1, photo.getIdPhoto());
-
 			ResultSet rs = stmt.executeQuery();
 			rs.next();
-
-			content = rs.getBinaryStream("CONTENT").readAllBytes();
+			content = rs.getBinaryStream("content").readAllBytes();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

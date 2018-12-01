@@ -24,6 +24,10 @@
 	crossorigin="anonymous">
 </head>
 <body>
+<% if (request.getParameter("idPlayground") == null || request.getParameter("idPlayground").length()==0){
+	pageContext.forward("/error.jsp");
+	return;
+}%>
 	<a href="index.jsp" class="doprava">Hlavní stránka</a>
 	<h1 align="center">
 		<strong>DETAIL HŘIŠTĚ</strong>
@@ -80,56 +84,58 @@
 					: String.format("%.2f", playground.getRating().getEnvironment())%>
 			</li>
 			<li>Zázemí pro doprovod dětí: <%=playground.getRating() == null || playground.getRating().getRestZone() == null ? "Nehodnoceno"
-					: String.format("%.2f", playground.getRating().getRestZone())%> 
+					: String.format("%.2f", playground.getRating().getRestZone())%>
 			</li>
 		</ul>
 	</div>
 	<div>
 		<h2>Zadat nové hodnocení</h2>
 		<form action="saveRating">
-		    <input type="hidden" name="idPlayground" value="<%=idPlayground%>"/>
-			Vybavenost <input type="radio" name="vyb" value="1" checked>1 <input
-				type="radio" name="vyb" value="2">2 <input type="radio"
-				name="vyb" value="3">3 <input type="radio" name="vyb"
-				value="4">4 <input type="radio" name="vyb" value="5">5<br>
-			Čistota <input type="radio" name="cist" value="1" checked>1 <input
-				type="radio" name="cist" value="2">2 <input type="radio"
-				name="cist" value="3">3 <input type="radio" name="cist"
-				value="4">4 <input type="radio" name="cist" value="5">5<br>
-			Bezpečnost <input type="radio" name="bezp" value="1" checked>1 <input
+			<input type="hidden" name="idPlayground" value="<%=idPlayground%>" />
+			Vybavenost <input type="radio" name="vyb" value="1" checked>1
+			<input type="radio" name="vyb" value="2">2 <input
+				type="radio" name="vyb" value="3">3 <input type="radio"
+				name="vyb" value="4">4 <input type="radio" name="vyb"
+				value="5">5<br> Čistota <input type="radio" name="cist"
+				value="1" checked>1 <input type="radio" name="cist"
+				value="2">2 <input type="radio" name="cist" value="3">3
+			<input type="radio" name="cist" value="4">4 <input
+				type="radio" name="cist" value="5">5<br> Bezpečnost <input
+				type="radio" name="bezp" value="1" checked>1 <input
 				type="radio" name="bezp" value="2">2 <input type="radio"
 				name="bezp" value="3">3 <input type="radio" name="bezp"
 				value="4">4 <input type="radio" name="bezp" value="5">5<br>
-			Množství okolní zeleně <input type="radio" name="zelen" value="1" checked>1
-			<input type="radio" name="zelen" value="2">2 <input
-				type="radio" name="zelen" value="3">3 <input type="radio"
-				name="zelen" value="4">4 <input type="radio" name="zelen"
-				value="5">5<br> 
-			Zázemí pro doprovod dětí <input
-				type="radio" name="zazemi" value="1" checked>1 <input type="radio"
-				name="zazemi" value="2">2 <input type="radio" name="zazemi"
-				value="3">3 <input type="radio" name="zazemi" value="4">4
-			<input type="radio" name="zazemi" value="5">5<br>
+			Množství okolní zeleně <input type="radio" name="zelen" value="1"
+				checked>1 <input type="radio" name="zelen" value="2">2
+			<input type="radio" name="zelen" value="3">3 <input
+				type="radio" name="zelen" value="4">4 <input type="radio"
+				name="zelen" value="5">5<br> Zázemí pro doprovod dětí <input
+				type="radio" name="zazemi" value="1" checked>1 <input
+				type="radio" name="zazemi" value="2">2 <input type="radio"
+				name="zazemi" value="3">3 <input type="radio" name="zazemi"
+				value="4">4 <input type="radio" name="zazemi" value="5">5<br>
 			<button type="submit">Odeslat hodnocení</button>
 		</form>
 
 	</div>
 	<div>
-	<jsp:useBean id="dao" class="cz.czechitas.detskahriste.dao.CommentDao"></jsp:useBean>
+		<jsp:useBean id="dao" class="cz.czechitas.detskahriste.dao.CommentDao"></jsp:useBean>
 		<h2>Komentáře</h2>
 		<%
-		ArrayList<Comment> listCom = dao.load(Long.valueOf(request.getParameter("idPlayground")));
-		for (int i =0; i<5 || i<listCom.size(); i++) {
-	%>
-	<p>
-		<strong class="fialova">
-		<%=listCom.get(i).getUser()%> - <%=listCom.get(i).getDate().format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm"))%></strong><br>
-		<i><%=listCom.get(i).getText()%></i><br>
-		<br>
-	</p>
-	<%}%>
-		
+			ArrayList<Comment> listCom = dao.load(Long.valueOf(request.getParameter("idPlayground")));
+			if (listCom != null) {
+				for (int i = 0; i < 5 && i < listCom.size(); i++) {
+		%>
+		<p>
+			<strong class="fialova"> <%=listCom.get(i).getUser()%> - <%=listCom.get(i).getDate().format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm"))%></strong><br>
+			<i><%=listCom.get(i).getText()%></i><br> <br>
+		</p>
+		<%
+			}
+			}
+		%>
+
 	</div>
-	<a href="comment.jsp" class="doleva">Zobrazit všechny komentáře</a>
+	<a href="comment.jsp?idPlayground=<%=request.getParameter("idPlayground")%>" class="doleva">Zobrazit všechny komentáře</a>
 </body>
 </html>
