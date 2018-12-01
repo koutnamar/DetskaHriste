@@ -35,11 +35,11 @@
 		    <input type="hidden" name="idPlayground" value="<%=request.getParameter("idPlayground")%>" />
 		    Jméno uživatele:
 		    <br> 
-		    <input type="text" name="userField" placeholder="Jméno/nick">
+		    <input type="text" name="userField" placeholder="Jméno/nick" required>
 			<br> 
 			Komentář:
 			<br> 
-			<input type="text" id="koment" name="commentField" placeholder="Přidejte text komentáře"><br>
+			<input type="text" id="koment" name="commentField" placeholder="Přidejte text komentáře" required><br>
 			<button type="submit" name="action" value="createComment">Odeslat komentář</button>
 	</form>
 	<jsp:useBean id="dao" class="cz.czechitas.detskahriste.dao.CommentDao"></jsp:useBean>
