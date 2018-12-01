@@ -1,5 +1,6 @@
 package cz.czechitas.detskahriste.dao;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -84,13 +85,26 @@ public class PhotoDao extends JdbcDao {
 			stmt.setLong(1, photo.getIdPhoto());
 			ResultSet rs = stmt.executeQuery();
 			rs.next();
-			content = rs.getBinaryStream("content").readAllBytes();
+			
+			
+			content = readAllBytes(rs.getBinaryStream("content"));
 		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		return content;
 	}
 
+	private byte[] readAllBytes(InputStream is) {
+		ByteArrayOutputStream ous = new ByteArrayOutputStream();
+		byte[] buffer = new byte[4096];
+		int read = 0;
+        try {
+			while ((read = is.read(buffer)) != -1) {
+			    ous.write(buffer, 0, read);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return ous.toByteArray();
+	}
 }
