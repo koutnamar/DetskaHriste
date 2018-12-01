@@ -50,7 +50,7 @@
 			%>
 
 
-		</select> <input type="text" name="filteStreet" />
+		</select> <input type="text" name="filterStreet" />
 		<button type="submit" name="search">
 			Hledat <i class="fas fa-search"></i>
 		</button></p>
