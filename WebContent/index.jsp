@@ -38,7 +38,7 @@
 	</p>
 	
 	<form action="index.jsp" method="post">
-		<p align="center"><select name="city">
+		<p align="center"><select name="filterCity">
 			<option disabled selected>Vybrat město</option>
 			<%
 				ArrayList<String> cityList = locationDao.loadCity();
@@ -50,7 +50,7 @@
 			%>
 
 
-		</select> <input type="text" name="street" />
+		</select> <input type="text" name="filteStreet" />
 		<button type="submit" name="search">
 			Hledat <i class="fas fa-search"></i>
 		</button></p>
@@ -67,8 +67,8 @@
 		</tr>
 		<%
 			ArrayList<Playground> list;
-			String city = request.getParameter("city");
-			String street = request.getParameter("street");
+			String city = request.getParameter("filterCity");
+			String street = request.getParameter("filterStreet");
 			if (city == null && street == null) {
 				list = playgroundDao.loadAll();
 			} else {

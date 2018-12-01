@@ -20,6 +20,10 @@
 	crossorigin="anonymous">
 </head>
 <body>
+<% if (request.getParameter("idPlayground") == null || request.getParameter("idPlayground").length()==0){
+	pageContext.forward("/error.jsp");
+	return;
+}%>
 	<a href="index.jsp" class="doprava">Hlavní stránka</a>
 	<br>
 	<a href="detail.jsp" class="doprava">Detail hřiště</a>
