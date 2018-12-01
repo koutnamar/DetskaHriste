@@ -1,3 +1,4 @@
+<%@page import="cz.czechitas.detskahriste.bean.Playground"%>
 <%@page import="cz.czechitas.detskahriste.bean.Photo"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="cz.czechitas.detskahriste.dao.PhotoDao"%>
@@ -32,11 +33,16 @@
 		href="detail.jsp?idPlayground=<%=request.getParameter("idPlayground")%>"
 		class="doprava">Detail hřiště</a>
 	<h1 align="center">
-		<strong>FOTOGALERIE HŘIŠTĚ Zednická, Ostrava</strong>
+	
+	<jsp:useBean id="playgroundDao" class="cz.czechitas.detskahriste.dao.PlaygroundDao"></jsp:useBean>
+		<% Playground playground = playgroundDao.load(Long.parseLong(request.getParameter("idPlayground"))); %>
+		
+		<strong>FOTOGALERIE HŘIŠTĚ ul. <%=playground.getLocation().getStreet() %>, <%=playground.getLocation().getCity() %></strong>
 	</h1>
 	<div class="photocontainer" align="center">
 
-		<jsp:useBean id="dao" class="cz.czechitas.detskahriste.dao.PhotoDao"></jsp:useBean>
+		<jsp:useBean id="daoPhoto" class="cz.czechitas.detskahriste.dao.PhotoDao"></jsp:useBean>
+		
 
 		<%
 			Long idPlayground = Long.parseLong(request.getParameter("idPlayground"));
