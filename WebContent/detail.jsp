@@ -39,7 +39,7 @@
 	<a href="index.jsp" class="doprava">Hlavní stránka</a>
 	<h1 align="center">
 	
-		<% Playground playground = playgroundDao.load(Long.parseLong(request.getParameter("idPlayground"))); %>
+		<% Playground playground = playgroundDao.load(idPlayground); %>
 		<strong>DETAIL HŘIŠTĚ ul. <%=playground.getLocation().getStreet() %>, <%=playground.getLocation().getCity() %></strong>
 	</h1>
 	<p align="center">

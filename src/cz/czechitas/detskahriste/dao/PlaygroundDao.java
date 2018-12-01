@@ -16,7 +16,7 @@ public class PlaygroundDao extends JdbcDao {
 	private static final String LOAD = "SELECT * FROM playground WHERE idPlayground = ?"; // naèíst všechny záznamy z
 																							// tabulky playground
 	private static final String LOAD_ALL = "SELECT * FROM playground";
-	private static final String LOAD_ALL_SELECT = "select * from playground, location where playground.idPlayground=location.idFkPlayLoc and location.city like ? and location.street like ?";
+	private static final String LOAD_ALL_SELECT = "select * from playground, location where playground.idPlayground=location.idFkPlayLoc and lower(location.city) like lower(?) and lower(location.street) like lower(?)";
 	private static final String INSERT = "INSERT INTO playground(open,traffic) VALUES (?,?)";
 	//private static final String SORT = "SELECT * FROM playground ORDER BY ";
 	private final CommentDao commentDao = new CommentDao();
@@ -108,8 +108,8 @@ public class PlaygroundDao extends JdbcDao {
 		try (Connection con = ds.getConnection(); 
 				PreparedStatement stmt = con.prepareStatement(LOAD_ALL_SELECT)) 
 		{
-			stmt.setString(1,city+"%");
-			stmt.setString(2, street+"%");
+			stmt.setString(1,"%" + city + "%");
+			stmt.setString(2,"%" + street + "%");
 			ResultSet rs = stmt.executeQuery(); 
 			while (rs.next()) { 
 				Playground playground = new Playground();
