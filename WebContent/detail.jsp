@@ -38,7 +38,9 @@
 %>
 	<a href="index.jsp" class="doprava">Hlavní stránka</a>
 	<h1 align="center">
-		<strong>DETAIL HŘIŠTĚ</strong>
+	
+		<% Playground playground = playgroundDao.load(idPlayground); %>
+		<strong>DETAIL HŘIŠTĚ ul. <%=playground.getLocation().getStreet() %>, <%=playground.getLocation().getCity() %></strong>
 	</h1>
 	<p align="center">
 	<% if (idPhoto != null){ %>
@@ -53,10 +55,7 @@
 	<div>
 		<h2>Parametry hřiště</h2>
 
-		<%
-			Playground playground = playgroundDao.load(idPlayground);	
-		%>
-
+		
 		<p>
 			Město:
 			<%=playground.getLocation().getCity()%>
