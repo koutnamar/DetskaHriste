@@ -26,36 +26,44 @@
 	crossorigin="anonymous">
 </head>
 <body>
-	
-<% if (request.getParameter("idPlayground") == null || request.getParameter("idPlayground").length()==0){
-	pageContext.forward("/error.jsp");
-	return;
-}%>
-<% 	Long idPlayground = Long.parseLong(request.getParameter("idPlayground"));
-	PhotoDao photoDao = new PhotoDao();
-	ArrayList<Photo> photos = photoDao.load(idPlayground);
-	Long idPhoto = (photos !=null && photos.size()>0 ? photos.get(0).getIdPhoto():null);//ternární operátor - podmínka
-%>
+
+	<%
+		if (request.getParameter("idPlayground") == null || request.getParameter("idPlayground").length() == 0) {
+			pageContext.forward("/error.jsp");
+			return;
+		}
+	%>
+	<%
+		Long idPlayground = Long.parseLong(request.getParameter("idPlayground"));
+		PhotoDao photoDao = new PhotoDao();
+		ArrayList<Photo> photos = photoDao.load(idPlayground);
+		Long idPhoto = (photos != null && photos.size() > 0 ? photos.get(0).getIdPhoto() : null);//ternární operátor - podmínka
+	%>
 	<a href="index.jsp" class="doprava">Hlavní stránka</a>
 	<h1 align="center">
-	
-		<% Playground playground = playgroundDao.load(idPlayground); %>
-		<strong>DETAIL HŘIŠTĚ ul. <%=playground.getLocation().getStreet() %>, <%=playground.getLocation().getCity() %></strong>
+
+		<%
+			Playground playground = playgroundDao.load(idPlayground);
+		%>
+		<strong>DETAIL HŘIŠTĚ ul. <%=playground.getLocation().getStreet()%>,
+			<%=playground.getLocation().getCity()%></strong>
 	</h1>
 	<p align="center">
 	<% if (idPhoto != null){ %>
-		<img id="borderimg1" src="DownloadPhoto?idPhoto=<%=idPhoto%>" alt="Dětská hřiště" width=50%>
+		<img id="borderimg1" src="DownloadPhoto?idPhoto=<%=idPhoto%>" alt="Dětská hřiště" width=300px>
 		<%} else { %>
-		<img id="borderimg1" src="images/defaultPlayground.jpeg" alt="Dětská hřiště" width=50%>
+		<img id="borderimg1" src="images/defaultPlayground.jpeg" alt="Dětská hřiště" width=100px>
 		<%}%>
 	</p>
-	<a href="photos.jsp?idPlayground=<%=request.getParameter("idPlayground")%>" class="doprava">Otevřít fotogalerii</a>
-	
-	
+	<a
+		href="photos.jsp?idPlayground=<%=request.getParameter("idPlayground")%>"
+		class="doprava">Otevřít fotogalerii</a>
+
+
 	<div>
 		<h2>Parametry hřiště</h2>
 
-		
+
 		<p>
 			Město:
 			<%=playground.getLocation().getCity()%>
@@ -98,6 +106,14 @@
 		</ul>
 	</div>
 	<div>
+		<%
+			if (session.getAttribute("ratedPlaygrounds") != null
+					&& ((ArrayList<Long>) session.getAttribute("ratedPlaygrounds")).contains(idPlayground)) {
+		%>
+		<p>Děkujeme za přidání hodnocení hřiště.</p>
+		<%
+			} else {
+		%>
 		<h2>Zadat nové hodnocení</h2>
 		<form action="saveRating">
 			<input type="hidden" name="idPlayground" value="<%=idPlayground%>" />
@@ -123,8 +139,12 @@
 				type="radio" name="zazemi" value="2">2 <input type="radio"
 				name="zazemi" value="3">3 <input type="radio" name="zazemi"
 				value="4">4 <input type="radio" name="zazemi" value="5">5<br>
+
 			<button type="submit">Odeslat hodnocení</button>
 		</form>
+		<%
+			}
+		%>
 
 	</div>
 	<div>
@@ -145,6 +165,8 @@
 		%>
 
 	</div>
-	<a href="comment.jsp?idPlayground=<%=request.getParameter("idPlayground")%>" class="doleva">Zobrazit všechny komentáře</a>
+	<a
+		href="comment.jsp?idPlayground=<%=request.getParameter("idPlayground")%>"
+		class="doleva">Zobrazit všechny komentáře</a>
 </body>
 </html>
