@@ -52,7 +52,7 @@
 
 		</select> <input type="text" name="street" />
 		<button type="submit" name="search">
-			<Strong>Hledat </Strong><i class="fas fa-search"></i>
+			Hledat <i class="fas fa-search"></i>
 		</button></p>
 	</form>
 
