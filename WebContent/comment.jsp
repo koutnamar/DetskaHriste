@@ -1,3 +1,5 @@
+<%@page import="cz.czechitas.detskahriste.dao.PlaygroundDao"%>
+<%@page import="cz.czechitas.detskahriste.bean.Playground"%>
 <%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="cz.czechitas.detskahriste.bean.Comment"%>
 <%@page import="java.util.ArrayList"%>
@@ -28,7 +30,10 @@
 	<br>
 	<a href="detail.jsp?idPlayground=<%=request.getParameter("idPlayground")%>" class="doprava">Detail hřiště</a>
 	<h1 align="center">
-		<strong>KOMENTÁŘE K HŘIŠTI Zednická, Ostrava</strong>
+	<jsp:useBean id="playgroundDao" class="cz.czechitas.detskahriste.dao.PlaygroundDao"></jsp:useBean>
+		<% Playground playground = playgroundDao.load(Long.parseLong(request.getParameter("idPlayground"))); %>
+		
+		<strong>FOTOGALERIE HŘIŠTĚ ul. <%=playground.getLocation().getStreet() %>, <%=playground.getLocation().getCity() %></strong>
 	</h1>
 <%-- 	<form action="comment.jsp?idPlayground=<%=request.getParameter("idPlayground")%>" method="post" > --%>
 	<form action="CommentServlet" method="post" >

@@ -99,7 +99,7 @@
 		<h2>Hodnocení</h2>
 		<p>
 			Průměrné skóre:
-			<%=playground.getAverageRating()%></p>
+			<%=String.format("%.2f", playground.getAverageRating())%></p>
 		<ul>
 			<li>Vybavenost: <%=playground.getRating() == null || playground.getRating().getEquipment() == null ? "Nehodnoceno"
 					: String.format("%.2f", playground.getRating().getEquipment())%>
